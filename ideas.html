@@ -6,52 +6,109 @@
 <title>Ideas · Market Signals</title>
 <meta name="description" content="Where the ideas come from and what happens to them.">
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232c5a8c'/%3E%3Cpath d='M7 22l6-7 5 4 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300c805'/%3E%3Cpath d='M6 22l6-7 5 4 9-10' stroke='black' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 </head>
 <body>
 <header class="site">
   <div class="site-inner">
-    <a class="brand" href="index.html">Market Signals</a>
-    <span class="asof">Results to 20 Nov 2026</span>
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 23l7-8 5 4 10-11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Market Signals</a>
+    <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html">How it works</a><a href="findings.html">Findings</a><a href="ideas.html" aria-current="page">Ideas</a><a href="machine.html">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
   </div>
-  <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html">How it works</a><a href="findings.html">Findings</a><a href="ideas.html" aria-current="page">Ideas</a><a href="machine.html">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
-  <script>(function(){var a=document.querySelector('.tabs a[aria-current]'),n=document.querySelector('.tabs');if(a&&n&&a.offsetLeft+a.offsetWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-16;})();</script>
 </header>
+<div class="wrap">
 <main>
 
-<section class="hero small-hero">
-  <h1>Ideas</h1>
-  <p class="lede">3,883 ideas so far. Almost all come from older imported lists or from AI that reads the news and company filings.</p>
+<section class="chart-block up big" id="c-ideas">
+  <h1>Ideas written</h1>
+  <div class="q-value" data-v>3,883</div>
+  <div class="q-change"><span data-c>+3,868</span> <span class="q-period" data-p>All time</span></div>
+  
+  <div class="chart" role="img" aria-label="Ideas written, line chart, from 15 to 3,883">
+    <svg viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" x2="1000" y1="190.0" y2="190.0"/><path class="line" d="M0.0,190.0 L33.3,188.9 L66.7,187.8 L100.0,186.6 L133.3,185.5 L166.7,184.5 L200.0,183.4 L233.3,182.3 L266.7,156.4 L300.0,152.0 L333.3,149.8 L366.7,145.2 L400.0,141.0 L433.3,137.0 L466.7,133.8 L500.0,130.7 L533.3,127.7 L566.7,125.0 L600.0,122.6 L633.3,119.6 L666.7,116.5 L700.0,113.3 L733.3,110.0 L766.7,106.7 L800.0,102.8 L833.3,99.7 L866.7,96.6 L900.0,93.4 L933.3,13.5 L966.7,11.0 L1000.0,10.0"/></svg>
+    <span class="hair" hidden></span><span class="tip" hidden></span><span class="dot" hidden></span>
+  </div>
+  <div class="ranges" role="group" aria-label="Time range"><button type="button" data-range="7" data-label="Past week" aria-pressed="false">1W</button><button type="button" data-range="0" data-label="All time" aria-pressed="true">ALL</button></div>
+  <script type="application/json">{"t":[1791849600,1791936000,1792022400,1792108800,1792195200,1792281600,1792368000,1792454400,1792540800,1792627200,1792713600,1792800000,1792886400,1792972800,1793059200,1793145600,1793232000,1793318400,1793404800,1793491200,1793577600,1793664000,1793750400,1793836800,1793923200,1794009600,1794096000,1794182400,1794268800,1794355200,1794441600],"v":[15,39,63,87,111,134,156,180,738,832,879,978,1067,1153,1222,1290,1353,1411,1464,1527,1594,1663,1735,1804,1888,1956,2021,2090,3807,3861,3883],"k":"int","g":"day"}</script>
 </section>
+<dl class="stats"><div><dt>Tested</dt><dd>2,838</dd></div><div><dt>Waiting, not looked at yet</dt><dd>888</dd></div><div><dt>Sent to a test, waiting for its turn</dt><dd>64</dd></div><div><dt>Needs data we don&#x27;t have</dt><dd>60</dd></div></dl>
 <section>
   <h2>Where they come from</h2>
-  <div class="bars">
+  <div class="bars up">
 <div class="bar"><span class="bar-label">Older idea lists, imported</span><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">3,058</span><span class="bar-note">2,800 tested</span></div>
 <div class="bar"><span class="bar-label">AI idea scout</span><span class="bar-track"><span class="bar-fill" style="width:22.56%"></span></span><span class="bar-value">690</span><span class="bar-note">13 tested</span></div>
 <div class="bar"><span class="bar-label">AI leads from news and cases</span><span class="bar-track"><span class="bar-fill" style="width:3.66%"></span></span><span class="bar-value">112</span><span class="bar-note">16 tested</span></div>
-<div class="bar"><span class="bar-label">Follow-ups of findings</span><span class="bar-track"><span class="bar-fill" style="width:0.46%"></span></span><span class="bar-value">14</span><span class="bar-note">9 tested</span></div>
-<div class="bar"><span class="bar-label">People on the team</span><span class="bar-track"><span class="bar-fill" style="width:0.40%"></span></span><span class="bar-value">9</span></div>
+<div class="bar"><span class="bar-label">Follow-ups of findings</span><span class="bar-track"><span class="bar-fill" style="width:0.60%"></span></span><span class="bar-value">14</span><span class="bar-note">9 tested</span></div>
+<div class="bar"><span class="bar-label">People on the team</span><span class="bar-track"><span class="bar-fill" style="width:0.60%"></span></span><span class="bar-value">9</span></div>
 </div>
   <p>People on the team have typed in <b>9</b> ideas, and none has been tested yet. Making their requests go first is on the <a href="next.html">list of what's next</a>.</p>
 </section>
 <section>
   <h2>Where they are now</h2>
-  <div class="bars">
+  <div class="bars up">
 <div class="bar"><span class="bar-label">Tested</span><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">2,838</span></div>
 <div class="bar"><span class="bar-label">Waiting, not looked at yet</span><span class="bar-track"><span class="bar-fill" style="width:31.29%"></span></span><span class="bar-value">888</span></div>
 <div class="bar"><span class="bar-label">Sent to a test, waiting for its turn</span><span class="bar-track"><span class="bar-fill" style="width:2.26%"></span></span><span class="bar-value">64</span></div>
 <div class="bar"><span class="bar-label">Needs data we don&#x27;t have</span><span class="bar-track"><span class="bar-fill" style="width:2.11%"></span></span><span class="bar-value">60</span></div>
 <div class="bar"><span class="bar-label">Open question</span><span class="bar-track"><span class="bar-fill" style="width:0.70%"></span></span><span class="bar-value">20</span></div>
-<div class="bar"><span class="bar-label">Needs a person to decide</span><span class="bar-track"><span class="bar-fill" style="width:0.40%"></span></span><span class="bar-value">9</span></div>
-<div class="bar"><span class="bar-label">Other</span><span class="bar-track"><span class="bar-fill" style="width:0.40%"></span></span><span class="bar-value">4</span></div>
+<div class="bar"><span class="bar-label">Needs a person to decide</span><span class="bar-track"><span class="bar-fill" style="width:0.60%"></span></span><span class="bar-value">9</span></div>
+<div class="bar"><span class="bar-label">Other</span><span class="bar-track"><span class="bar-fill" style="width:0.60%"></span></span><span class="bar-value">4</span></div>
 </div>
   <p>"Needs data" means the idea needs a kind of data the project doesn't collect yet.</p>
 </section>
 <p class="next-link"><a href="machine.html">Next: The machine <span aria-hidden="true">→</span></a></p>
 </main>
+<aside class="side"><div class="card"><div class="card-head"><h2>Findings</h2><span>30 total</span></div><div class="card-list"><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F01</span><span class="w-title">Recent path predicts next week&#x27;s move size</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F03</span><span class="w-title">Recent extreme days, same signal as F01</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F02</span><span class="w-title">Europe and Asia follow the US move a session later</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F08</span><span class="w-title">Thinly traded stocks react to the market a day late</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F17</span><span class="w-title">The Treasury trend says something about a few bond funds</span></span><span class="pill flat">Checking</span></a></div><div class="card-head"><h2>Real ideas passing</h2><span>by stage</span></div><div class="card-list"><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">First screen</span><span class="w-title">Luck passes 3.2%</span></span><span class="pill flat">2.7%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Second look</span><span class="w-title">Luck passes 2.1%</span></span><span class="pill up">4.3%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Battery check</span><span class="w-title">Luck passes 1.9%</span></span><span class="pill up">20.8%</span></a></div><p class="card-foot">Results to Nov 20, 2026. Snapshot, not live.</p></div></aside>
+</div>
 <footer class="site-foot"><div class="site-inner">
-  <span>Updated 24 Nov 2026 from the project's research tables. A snapshot, not live.</span>
+  <span>Updated Nov 25, 2026 from the project's research tables. A snapshot, not live.</span>
   <span>Not investment advice. Nothing here is traded.</span>
 </div></footer>
+<script>(function(){
+var NF=new Intl.NumberFormat('en-US');
+function fmt(v,k){return k==='pct'?Math.round(v*100)+'%':NF.format(Math.round(v));}
+function chg(d,k){var s=d>0?'+':(d<0?'−':'');d=Math.abs(d);return s+(k==='pct'?Math.round(d*100)+' pts':NF.format(Math.round(d)));}
+function lab(t,g){var o=g==='hour'?{month:'short',day:'numeric',hour:'numeric',timeZone:'America/New_York'}:{month:'short',day:'numeric',timeZone:'UTC'};return new Date(t*1000).toLocaleString('en-US',o)+(g==='hour'?' ET':'');}
+var a=document.querySelector('.tabs a[aria-current]'),nv=document.querySelector('.tabs');if(a&&nv&&a.offsetLeft+a.offsetWidth>nv.clientWidth)nv.scrollLeft=a.offsetLeft-16;
+document.querySelectorAll('.chart-block').forEach(function(b){
+  var D=JSON.parse(b.querySelector('script[type="application/json"]').textContent);
+  var box=b.querySelector('.chart'),svg=box.querySelector('svg'),line=svg.querySelector('.line'),base=svg.querySelector('.base');
+  var dot=box.querySelector('.dot'),hair=box.querySelector('.hair'),tip=box.querySelector('.tip');
+  var V=b.querySelector('[data-v]'),C=b.querySelector('[data-c]'),P=b.querySelector('[data-p]');
+  var W=1000,H=200,PAD=10,S=null;
+  function draw(days,label){
+    var n=D.t.length,t1=D.t[n-1],t0=days?t1-days*86400:-Infinity,I=[];
+    for(var i=0;i<n;i++)if(D.t[i]>=t0)I.push(i);
+    var mn=Infinity,mx=-Infinity;I.forEach(function(i){mn=Math.min(mn,D.v[i]);mx=Math.max(mx,D.v[i]);});
+    var a=D.t[I[0]],z=D.t[I[I.length-1]];
+    var xs=I.map(function(i){return (D.t[i]-a)/((z-a)||1)*W;});
+    var ys=I.map(function(i){return mx===mn?H/2:PAD+(1-(D.v[i]-mn)/(mx-mn))*(H-2*PAD);});
+    line.setAttribute('d','M'+xs.map(function(x,j){return x.toFixed(1)+','+ys[j].toFixed(1);}).join(' L'));
+    base.setAttribute('y1',ys[0].toFixed(1));base.setAttribute('y2',ys[0].toFixed(1));
+    S={I:I,xs:xs,ys:ys,label:label};
+    var d=D.v[I[I.length-1]]-D.v[I[0]];
+    b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);
+    show(I.length-1,label);
+  }
+  function show(j,label){
+    var i=S.I[j];V.textContent=fmt(D.v[i],D.k);C.textContent=chg(D.v[i]-D.v[S.I[0]],D.k);P.textContent=label;
+  }
+  function move(ev){
+    if(!S)return;var r=box.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width*W,lo=0,hi=S.xs.length-1;
+    while(hi-lo>1){var m=(lo+hi)>>1;if(S.xs[m]<x)lo=m;else hi=m;}
+    var j=Math.abs(S.xs[lo]-x)<Math.abs(S.xs[hi]-x)?lo:hi,px=S.xs[j]/W*100,py=S.ys[j]/H*100;
+    dot.hidden=hair.hidden=tip.hidden=false;
+    dot.style.left=hair.style.left=tip.style.left=px+'%';dot.style.top=py+'%';
+    tip.textContent=lab(D.t[S.I[j]],D.g);tip.classList.toggle('right',px>80);tip.classList.toggle('left',px<20);
+    var d=D.v[S.I[j]]-D.v[S.I[0]];b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);
+    show(j,lab(D.t[S.I[j]],D.g));
+  }
+  function leave(){dot.hidden=hair.hidden=tip.hidden=true;var d=D.v[S.I[S.I.length-1]]-D.v[S.I[0]];b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);show(S.I.length-1,S.label);}
+  box.addEventListener('pointermove',move);box.addEventListener('pointerdown',move);
+  box.addEventListener('pointerleave',leave);box.addEventListener('pointercancel',leave);box.addEventListener('pointerup',function(ev){if(ev.pointerType!=='mouse')leave();});
+  var btns=b.querySelectorAll('[data-range]');
+  btns.forEach(function(x){x.addEventListener('click',function(){btns.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false');});draw(+x.dataset.range,x.dataset.label);});});
+  var on=b.querySelector('[data-range][aria-pressed="true"]');draw(on?+on.dataset.range:0,on?on.dataset.label:P.textContent);
+});
+})();</script>
 </body>
 </html>

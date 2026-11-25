@@ -6,43 +6,101 @@
 <title>The machine · Market Signals</title>
 <meta name="description" content="How the research runs overnight, and how busy the computer is.">
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232c5a8c'/%3E%3Cpath d='M7 22l6-7 5 4 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300c805'/%3E%3Cpath d='M6 22l6-7 5 4 9-10' stroke='black' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 </head>
 <body>
 <header class="site">
   <div class="site-inner">
-    <a class="brand" href="index.html">Market Signals</a>
-    <span class="asof">Results to 20 Nov 2026</span>
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 23l7-8 5 4 10-11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Market Signals</a>
+    <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html">How it works</a><a href="findings.html">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html" aria-current="page">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
   </div>
-  <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html">How it works</a><a href="findings.html">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html" aria-current="page">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
-  <script>(function(){var a=document.querySelector('.tabs a[aria-current]'),n=document.querySelector('.tabs');if(a&&n&&a.offsetLeft+a.offsetWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-16;})();</script>
 </header>
+<div class="wrap">
 <main>
 
-<section class="hero small-hero">
-  <h1>The machine</h1>
-  <p class="lede">The tests run overnight on one home PC, mostly on its graphics card, which can run thousands of small tests at once. Every 10 minutes the system decides what to run next.</p>
+<section class="chart-block down big" id="c-gpu">
+  <h1>Graphics card busy</h1>
+  <div class="q-value" data-v>40%</div>
+  <div class="q-change"><span data-c>−23 pts</span> <span class="q-period" data-p>Since Nov 13</span></div>
+  <p class="q-sub">Average share of each night the graphics card was busy. It averaged 81% up to Nov 19 and about 40% since.</p>
+  <div class="chart" role="img" aria-label="Graphics card busy, line chart, from 63% to 40%">
+    <svg viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" x2="1000" y1="108.8" y2="108.8"/><path class="line" d="M0.0,108.8 L90.9,10.0 L181.8,34.9 L272.7,111.9 L363.6,24.8 L454.5,38.1 L545.5,14.7 L636.4,176.3 L727.3,180.3 L818.2,189.5 L909.1,190.0 L1000.0,186.4"/></svg>
+    <span class="hair" hidden></span><span class="tip" hidden></span><span class="dot" hidden></span>
+  </div>
+  <div class="ranges" role="group" aria-label="Time range"><button type="button" data-range="7" data-label="Past week" aria-pressed="false">1W</button><button type="button" data-range="0" data-label="Since Nov 13" aria-pressed="true">ALL</button></div>
+  <script type="application/json">{"t":[1794528000,1794614400,1794700800,1794787200,1794873600,1794960000,1795046400,1795132800,1795219200,1795305600,1795392000,1795478400],"v":[0.6325000000000001,0.9299999999999998,0.855125,0.6231612903225807,0.8855937500000001,0.8454999999999999,0.91571875,0.42959375,0.41738709677419356,0.38981249999999995,0.38825,0.3990967741935484],"k":"pct","g":"day"}</script>
 </section>
-<div class="stats three">
-  <div class="stat"><strong>20,242</strong><span>jobs finished</span></div>
-  <div class="stat"><strong>48,106</strong><span>test results recorded</span></div>
-  <div class="stat"><strong>1</strong><span>computer doing the work</span></div>
-</div>
+<dl class="stats"><div><dt>Jobs finished</dt><dd>20,242</dd></div><div><dt>Test results</dt><dd>48,106</dd></div><div><dt>Computers</dt><dd>1</dd></div><div><dt>Decides what&#x27;s next</dt><dd>Every 10 min</dd></div></dl>
 <section>
-  <h2>How busy the graphics card was each night</h2>
-  <div class="cols" role="img" aria-label="Graphics card busy share per night: 13 Nov 63%, 14 Nov 93%, 15 Nov 86%, 16 Nov 62%, 17 Nov 89%, 18 Nov 85%, 19 Nov 92%, 20 Nov 43%, 21 Nov 42%, 22 Nov 39%, 23 Nov 39%, 24 Nov 40%"><div class="col"><span class="col-value">63%</span><span class="col-track"><span class="col-fill" style="height:63.3%"></span></span><span class="col-label">13 Nov</span></div><div class="col"><span class="col-value">93%</span><span class="col-track"><span class="col-fill" style="height:93.0%"></span></span><span class="col-label">14 Nov</span></div><div class="col"><span class="col-value">86%</span><span class="col-track"><span class="col-fill" style="height:85.5%"></span></span><span class="col-label">15 Nov</span></div><div class="col"><span class="col-value">62%</span><span class="col-track"><span class="col-fill" style="height:62.3%"></span></span><span class="col-label">16 Nov</span></div><div class="col"><span class="col-value">89%</span><span class="col-track"><span class="col-fill" style="height:88.6%"></span></span><span class="col-label">17 Nov</span></div><div class="col"><span class="col-value">85%</span><span class="col-track"><span class="col-fill" style="height:84.5%"></span></span><span class="col-label">18 Nov</span></div><div class="col"><span class="col-value">92%</span><span class="col-track"><span class="col-fill" style="height:91.6%"></span></span><span class="col-label">19 Nov</span></div><div class="col"><span class="col-value">43%</span><span class="col-track"><span class="col-fill" style="height:43.0%"></span></span><span class="col-label">20 Nov</span></div><div class="col"><span class="col-value">42%</span><span class="col-track"><span class="col-fill" style="height:41.7%"></span></span><span class="col-label">21 Nov</span></div><div class="col"><span class="col-value">39%</span><span class="col-track"><span class="col-fill" style="height:39.0%"></span></span><span class="col-label">22 Nov</span></div><div class="col"><span class="col-value">39%</span><span class="col-track"><span class="col-fill" style="height:38.8%"></span></span><span class="col-label">23 Nov</span></div><div class="col"><span class="col-value">40%</span><span class="col-track"><span class="col-fill" style="height:39.9%"></span></span><span class="col-label">24 Nov</span></div></div>
-  <p class="small">Average share of the night the graphics card was busy, 13 Nov to 24 Nov. It averaged 81% up to 19 Nov and about 40% since.</p>
+  <h2>About</h2>
+  <p>The tests run overnight on one home PC, mostly on its graphics card, which can run thousands of small tests at once. Every 10 minutes the system decides what to run next.</p>
 </section>
-<section>
-  <h2>Jobs finished per day</h2>
-  <div class="cols" role="img" aria-label="Jobs finished per day: 13 Nov 29, 14 Nov 1,362, 15 Nov 2,205, 16 Nov 2,041, 17 Nov 4,769, 18 Nov 4,131, 19 Nov 5,141, 20 Nov 489"><div class="col"><span class="col-value">29</span><span class="col-track"><span class="col-fill" style="height:0.6%"></span></span><span class="col-label">13 Nov</span></div><div class="col"><span class="col-value">1,362</span><span class="col-track"><span class="col-fill" style="height:26.5%"></span></span><span class="col-label">14 Nov</span></div><div class="col"><span class="col-value">2,205</span><span class="col-track"><span class="col-fill" style="height:42.9%"></span></span><span class="col-label">15 Nov</span></div><div class="col"><span class="col-value">2,041</span><span class="col-track"><span class="col-fill" style="height:39.7%"></span></span><span class="col-label">16 Nov</span></div><div class="col"><span class="col-value">4,769</span><span class="col-track"><span class="col-fill" style="height:92.8%"></span></span><span class="col-label">17 Nov</span></div><div class="col"><span class="col-value">4,131</span><span class="col-track"><span class="col-fill" style="height:80.4%"></span></span><span class="col-label">18 Nov</span></div><div class="col"><span class="col-value">5,141</span><span class="col-track"><span class="col-fill" style="height:100.0%"></span></span><span class="col-label">19 Nov</span></div><div class="col"><span class="col-value">489</span><span class="col-track"><span class="col-fill" style="height:9.5%"></span></span><span class="col-label">20 Nov</span></div></div>
-  <p class="small">New York days.</p>
+<section class="chart-block up" id="c-jobs">
+  <h2 class="chart-title">Jobs finished per day</h2>
+  <div class="q-value" data-v>489</div>
+  <div class="q-change"><span data-c>+460</span> <span class="q-period" data-p>Since Nov 13</span></div>
+  <p class="q-sub">New York days with at least 20 jobs.</p>
+  <div class="chart" role="img" aria-label="Jobs finished per day, line chart, from 29 to 489">
+    <svg viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" x2="1000" y1="190.0" y2="190.0"/><path class="line" d="M0.0,190.0 L142.9,143.1 L285.7,113.4 L428.6,119.2 L571.4,23.1 L714.3,45.6 L857.1,10.0 L1000.0,173.8"/></svg>
+    <span class="hair" hidden></span><span class="tip" hidden></span><span class="dot" hidden></span>
+  </div>
+  <div class="ranges"></div>
+  <script type="application/json">{"t":[1794528000,1794614400,1794700800,1794787200,1794873600,1794960000,1795046400,1795132800],"v":[29,1362,2205,2041,4769,4131,5141,489],"k":"int","g":"day"}</script>
 </section>
 <p class="next-link"><a href="next.html">Next: What&#x27;s next <span aria-hidden="true">→</span></a></p>
 </main>
+<aside class="side"><div class="card"><div class="card-head"><h2>Findings</h2><span>30 total</span></div><div class="card-list"><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F01</span><span class="w-title">Recent path predicts next week&#x27;s move size</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F03</span><span class="w-title">Recent extreme days, same signal as F01</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F02</span><span class="w-title">Europe and Asia follow the US move a session later</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F08</span><span class="w-title">Thinly traded stocks react to the market a day late</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F17</span><span class="w-title">The Treasury trend says something about a few bond funds</span></span><span class="pill flat">Checking</span></a></div><div class="card-head"><h2>Real ideas passing</h2><span>by stage</span></div><div class="card-list"><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">First screen</span><span class="w-title">Luck passes 3.2%</span></span><span class="pill flat">2.7%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Second look</span><span class="w-title">Luck passes 2.1%</span></span><span class="pill up">4.3%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Battery check</span><span class="w-title">Luck passes 1.9%</span></span><span class="pill up">20.8%</span></a></div><p class="card-foot">Results to Nov 20, 2026. Snapshot, not live.</p></div></aside>
+</div>
 <footer class="site-foot"><div class="site-inner">
-  <span>Updated 24 Nov 2026 from the project's research tables. A snapshot, not live.</span>
+  <span>Updated Nov 25, 2026 from the project's research tables. A snapshot, not live.</span>
   <span>Not investment advice. Nothing here is traded.</span>
 </div></footer>
+<script>(function(){
+var NF=new Intl.NumberFormat('en-US');
+function fmt(v,k){return k==='pct'?Math.round(v*100)+'%':NF.format(Math.round(v));}
+function chg(d,k){var s=d>0?'+':(d<0?'−':'');d=Math.abs(d);return s+(k==='pct'?Math.round(d*100)+' pts':NF.format(Math.round(d)));}
+function lab(t,g){var o=g==='hour'?{month:'short',day:'numeric',hour:'numeric',timeZone:'America/New_York'}:{month:'short',day:'numeric',timeZone:'UTC'};return new Date(t*1000).toLocaleString('en-US',o)+(g==='hour'?' ET':'');}
+var a=document.querySelector('.tabs a[aria-current]'),nv=document.querySelector('.tabs');if(a&&nv&&a.offsetLeft+a.offsetWidth>nv.clientWidth)nv.scrollLeft=a.offsetLeft-16;
+document.querySelectorAll('.chart-block').forEach(function(b){
+  var D=JSON.parse(b.querySelector('script[type="application/json"]').textContent);
+  var box=b.querySelector('.chart'),svg=box.querySelector('svg'),line=svg.querySelector('.line'),base=svg.querySelector('.base');
+  var dot=box.querySelector('.dot'),hair=box.querySelector('.hair'),tip=box.querySelector('.tip');
+  var V=b.querySelector('[data-v]'),C=b.querySelector('[data-c]'),P=b.querySelector('[data-p]');
+  var W=1000,H=200,PAD=10,S=null;
+  function draw(days,label){
+    var n=D.t.length,t1=D.t[n-1],t0=days?t1-days*86400:-Infinity,I=[];
+    for(var i=0;i<n;i++)if(D.t[i]>=t0)I.push(i);
+    var mn=Infinity,mx=-Infinity;I.forEach(function(i){mn=Math.min(mn,D.v[i]);mx=Math.max(mx,D.v[i]);});
+    var a=D.t[I[0]],z=D.t[I[I.length-1]];
+    var xs=I.map(function(i){return (D.t[i]-a)/((z-a)||1)*W;});
+    var ys=I.map(function(i){return mx===mn?H/2:PAD+(1-(D.v[i]-mn)/(mx-mn))*(H-2*PAD);});
+    line.setAttribute('d','M'+xs.map(function(x,j){return x.toFixed(1)+','+ys[j].toFixed(1);}).join(' L'));
+    base.setAttribute('y1',ys[0].toFixed(1));base.setAttribute('y2',ys[0].toFixed(1));
+    S={I:I,xs:xs,ys:ys,label:label};
+    var d=D.v[I[I.length-1]]-D.v[I[0]];
+    b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);
+    show(I.length-1,label);
+  }
+  function show(j,label){
+    var i=S.I[j];V.textContent=fmt(D.v[i],D.k);C.textContent=chg(D.v[i]-D.v[S.I[0]],D.k);P.textContent=label;
+  }
+  function move(ev){
+    if(!S)return;var r=box.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width*W,lo=0,hi=S.xs.length-1;
+    while(hi-lo>1){var m=(lo+hi)>>1;if(S.xs[m]<x)lo=m;else hi=m;}
+    var j=Math.abs(S.xs[lo]-x)<Math.abs(S.xs[hi]-x)?lo:hi,px=S.xs[j]/W*100,py=S.ys[j]/H*100;
+    dot.hidden=hair.hidden=tip.hidden=false;
+    dot.style.left=hair.style.left=tip.style.left=px+'%';dot.style.top=py+'%';
+    tip.textContent=lab(D.t[S.I[j]],D.g);tip.classList.toggle('right',px>80);tip.classList.toggle('left',px<20);
+    var d=D.v[S.I[j]]-D.v[S.I[0]];b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);
+    show(j,lab(D.t[S.I[j]],D.g));
+  }
+  function leave(){dot.hidden=hair.hidden=tip.hidden=true;var d=D.v[S.I[S.I.length-1]]-D.v[S.I[0]];b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);show(S.I.length-1,S.label);}
+  box.addEventListener('pointermove',move);box.addEventListener('pointerdown',move);
+  box.addEventListener('pointerleave',leave);box.addEventListener('pointercancel',leave);box.addEventListener('pointerup',function(ev){if(ev.pointerType!=='mouse')leave();});
+  var btns=b.querySelectorAll('[data-range]');
+  btns.forEach(function(x){x.addEventListener('click',function(){btns.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false');});draw(+x.dataset.range,x.dataset.label);});});
+  var on=b.querySelector('[data-range][aria-pressed="true"]');draw(on?+on.dataset.range:0,on?on.dataset.label:P.textContent);
+});
+})();</script>
 </body>
 </html>

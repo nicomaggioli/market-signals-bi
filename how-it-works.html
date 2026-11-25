@@ -6,22 +6,26 @@
 <title>How it works · Market Signals</title>
 <meta name="description" content="How an idea is tested, and how the project measures luck.">
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232c5a8c'/%3E%3Cpath d='M7 22l6-7 5 4 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300c805'/%3E%3Cpath d='M6 22l6-7 5 4 9-10' stroke='black' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 </head>
 <body>
 <header class="site">
   <div class="site-inner">
-    <a class="brand" href="index.html">Market Signals</a>
-    <span class="asof">Results to 20 Nov 2026</span>
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 23l7-8 5 4 10-11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Market Signals</a>
+    <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html" aria-current="page">How it works</a><a href="findings.html">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
   </div>
-  <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html" aria-current="page">How it works</a><a href="findings.html">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
-  <script>(function(){var a=document.querySelector('.tabs a[aria-current]'),n=document.querySelector('.tabs');if(a&&n&&a.offsetLeft+a.offsetWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-16;})();</script>
 </header>
+<div class="wrap">
 <main>
 
-<section class="hero small-hero">
+<section class="quote">
   <h1>How it works</h1>
-  <p class="lede">An idea is something like "when oil jumps, airline stocks fall the next day". The system turns it into a test, runs it on years of data, and keeps only the ideas that survive several checks in a row.</p>
+  <div class="q-value">2.7% <span class="vs">vs</span> 3.2%</div>
+  <div class="q-change flat">Real ideas vs luck at the first screen</div>
+</section>
+<section>
+  <h2>About</h2>
+  <p>An idea is something like "when oil jumps, airline stocks fall the next day". The system turns it into a test, runs it on years of data, and keeps only the ideas that survive several checks in a row.</p>
 </section>
 <section>
   <h2>The steps</h2>
@@ -36,13 +40,12 @@
 </section>
 <section>
   <h2>How many make it</h2>
-  <p>Each step keeps fewer ideas.</p>
-  <div class="bars">
+  <div class="bars up">
 <div class="bar"><span class="bar-label">Ideas written</span><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">3,883</span></div>
 <div class="bar"><span class="bar-label">Got a test result</span><span class="bar-track"><span class="bar-fill" style="width:17.20%"></span></span><span class="bar-value">668</span></div>
-<div class="bar"><span class="bar-label">Passed at least one test</span><span class="bar-track"><span class="bar-fill" style="width:8.45%"></span></span><span class="bar-value">328</span></div>
+<div class="bar"><span class="bar-label">Passed a test</span><span class="bar-track"><span class="bar-fill" style="width:8.45%"></span></span><span class="bar-value">328</span></div>
 <div class="bar"><span class="bar-label">Became a finding</span><span class="bar-track"><span class="bar-fill" style="width:0.77%"></span></span><span class="bar-value">30</span></div>
-<div class="bar"><span class="bar-label">Confirmed</span><span class="bar-track"><span class="bar-fill" style="width:0.40%"></span></span><span class="bar-value">2</span></div>
+<div class="bar"><span class="bar-label">Confirmed</span><span class="bar-track"><span class="bar-fill" style="width:0.60%"></span></span><span class="bar-value">2</span></div>
 </div>
 </section>
 <section>
@@ -50,22 +53,71 @@
   <p>Alongside every real test, the system runs luck-only tests on fake or shuffled data. Those can only pass by chance, so they show how often noise gets through. So far it has run <b>26,164</b> of them.</p>
   <div class="legend"><span><i></i>Real ideas</span><span class="luck"><i></i>Luck only</span></div>
   <div class="pairs"><div class="pair"><span class="pair-label">First screen</span><div class="pair-bars">
-  <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:12.91%"></span></span><span class="bar-value">2.7%</span><span class="bar-note">real ideas, 16,331 tests</span></div>
-  <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:15.39%"></span></span><span class="bar-value">3.2%</span><span class="bar-note">luck only, 11,446 tests</span></div>
+  <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:12.91%"></span></span><span class="bar-value">2.7%</span><span class="bar-note">real ideas · 16,331 tests</span></div>
+  <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:15.39%"></span></span><span class="bar-value">3.2%</span><span class="bar-note">luck only · 11,446 tests</span></div>
 </div></div><div class="pair"><span class="pair-label">Second look</span><div class="pair-bars">
-  <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:20.65%"></span></span><span class="bar-value">4.3%</span><span class="bar-note">real ideas, 1,515 tests</span></div>
-  <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:10.24%"></span></span><span class="bar-value">2.1%</span><span class="bar-note">luck only, 4,933 tests</span></div>
+  <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:20.65%"></span></span><span class="bar-value">4.3%</span><span class="bar-note">real ideas · 1,515 tests</span></div>
+  <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:10.24%"></span></span><span class="bar-value">2.1%</span><span class="bar-note">luck only · 4,933 tests</span></div>
 </div></div><div class="pair"><span class="pair-label">Battery check</span><div class="pair-bars">
-  <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">20.8%</span><span class="bar-note">real ideas, 4,076 tests</span></div>
-  <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:9.30%"></span></span><span class="bar-value">1.9%</span><span class="bar-note">luck only, 3,000 tests</span></div>
+  <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">20.8%</span><span class="bar-note">real ideas · 4,076 tests</span></div>
+  <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:9.30%"></span></span><span class="bar-value">1.9%</span><span class="bar-note">luck only · 3,000 tests</span></div>
 </div></div></div>
   <p>At the first screen, real ideas pass <b>2.7%</b> of the time and luck-only tests <b>3.2%</b>: no real difference. The battery check only sees ideas that already passed a screen, and there real ideas pass <b>20.8%</b> against <b>1.9%</b> for luck. That's where real signals start to show.</p>
 </section>
 <p class="next-link"><a href="findings.html">Next: Findings <span aria-hidden="true">→</span></a></p>
 </main>
+<aside class="side"><div class="card"><div class="card-head"><h2>Findings</h2><span>30 total</span></div><div class="card-list"><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F01</span><span class="w-title">Recent path predicts next week&#x27;s move size</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F03</span><span class="w-title">Recent extreme days, same signal as F01</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F02</span><span class="w-title">Europe and Asia follow the US move a session later</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F08</span><span class="w-title">Thinly traded stocks react to the market a day late</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F17</span><span class="w-title">The Treasury trend says something about a few bond funds</span></span><span class="pill flat">Checking</span></a></div><div class="card-head"><h2>Real ideas passing</h2><span>by stage</span></div><div class="card-list"><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">First screen</span><span class="w-title">Luck passes 3.2%</span></span><span class="pill flat">2.7%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Second look</span><span class="w-title">Luck passes 2.1%</span></span><span class="pill up">4.3%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Battery check</span><span class="w-title">Luck passes 1.9%</span></span><span class="pill up">20.8%</span></a></div><p class="card-foot">Results to Nov 20, 2026. Snapshot, not live.</p></div></aside>
+</div>
 <footer class="site-foot"><div class="site-inner">
-  <span>Updated 24 Nov 2026 from the project's research tables. A snapshot, not live.</span>
+  <span>Updated Nov 25, 2026 from the project's research tables. A snapshot, not live.</span>
   <span>Not investment advice. Nothing here is traded.</span>
 </div></footer>
+<script>(function(){
+var NF=new Intl.NumberFormat('en-US');
+function fmt(v,k){return k==='pct'?Math.round(v*100)+'%':NF.format(Math.round(v));}
+function chg(d,k){var s=d>0?'+':(d<0?'−':'');d=Math.abs(d);return s+(k==='pct'?Math.round(d*100)+' pts':NF.format(Math.round(d)));}
+function lab(t,g){var o=g==='hour'?{month:'short',day:'numeric',hour:'numeric',timeZone:'America/New_York'}:{month:'short',day:'numeric',timeZone:'UTC'};return new Date(t*1000).toLocaleString('en-US',o)+(g==='hour'?' ET':'');}
+var a=document.querySelector('.tabs a[aria-current]'),nv=document.querySelector('.tabs');if(a&&nv&&a.offsetLeft+a.offsetWidth>nv.clientWidth)nv.scrollLeft=a.offsetLeft-16;
+document.querySelectorAll('.chart-block').forEach(function(b){
+  var D=JSON.parse(b.querySelector('script[type="application/json"]').textContent);
+  var box=b.querySelector('.chart'),svg=box.querySelector('svg'),line=svg.querySelector('.line'),base=svg.querySelector('.base');
+  var dot=box.querySelector('.dot'),hair=box.querySelector('.hair'),tip=box.querySelector('.tip');
+  var V=b.querySelector('[data-v]'),C=b.querySelector('[data-c]'),P=b.querySelector('[data-p]');
+  var W=1000,H=200,PAD=10,S=null;
+  function draw(days,label){
+    var n=D.t.length,t1=D.t[n-1],t0=days?t1-days*86400:-Infinity,I=[];
+    for(var i=0;i<n;i++)if(D.t[i]>=t0)I.push(i);
+    var mn=Infinity,mx=-Infinity;I.forEach(function(i){mn=Math.min(mn,D.v[i]);mx=Math.max(mx,D.v[i]);});
+    var a=D.t[I[0]],z=D.t[I[I.length-1]];
+    var xs=I.map(function(i){return (D.t[i]-a)/((z-a)||1)*W;});
+    var ys=I.map(function(i){return mx===mn?H/2:PAD+(1-(D.v[i]-mn)/(mx-mn))*(H-2*PAD);});
+    line.setAttribute('d','M'+xs.map(function(x,j){return x.toFixed(1)+','+ys[j].toFixed(1);}).join(' L'));
+    base.setAttribute('y1',ys[0].toFixed(1));base.setAttribute('y2',ys[0].toFixed(1));
+    S={I:I,xs:xs,ys:ys,label:label};
+    var d=D.v[I[I.length-1]]-D.v[I[0]];
+    b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);
+    show(I.length-1,label);
+  }
+  function show(j,label){
+    var i=S.I[j];V.textContent=fmt(D.v[i],D.k);C.textContent=chg(D.v[i]-D.v[S.I[0]],D.k);P.textContent=label;
+  }
+  function move(ev){
+    if(!S)return;var r=box.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width*W,lo=0,hi=S.xs.length-1;
+    while(hi-lo>1){var m=(lo+hi)>>1;if(S.xs[m]<x)lo=m;else hi=m;}
+    var j=Math.abs(S.xs[lo]-x)<Math.abs(S.xs[hi]-x)?lo:hi,px=S.xs[j]/W*100,py=S.ys[j]/H*100;
+    dot.hidden=hair.hidden=tip.hidden=false;
+    dot.style.left=hair.style.left=tip.style.left=px+'%';dot.style.top=py+'%';
+    tip.textContent=lab(D.t[S.I[j]],D.g);tip.classList.toggle('right',px>80);tip.classList.toggle('left',px<20);
+    var d=D.v[S.I[j]]-D.v[S.I[0]];b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);
+    show(j,lab(D.t[S.I[j]],D.g));
+  }
+  function leave(){dot.hidden=hair.hidden=tip.hidden=true;var d=D.v[S.I[S.I.length-1]]-D.v[S.I[0]];b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);show(S.I.length-1,S.label);}
+  box.addEventListener('pointermove',move);box.addEventListener('pointerdown',move);
+  box.addEventListener('pointerleave',leave);box.addEventListener('pointercancel',leave);box.addEventListener('pointerup',function(ev){if(ev.pointerType!=='mouse')leave();});
+  var btns=b.querySelectorAll('[data-range]');
+  btns.forEach(function(x){x.addEventListener('click',function(){btns.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false');});draw(+x.dataset.range,x.dataset.label);});});
+  var on=b.querySelector('[data-range][aria-pressed="true"]');draw(on?+on.dataset.range:0,on?on.dataset.label:P.textContent);
+});
+})();</script>
 </body>
 </html>

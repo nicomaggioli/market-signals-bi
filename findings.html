@@ -6,58 +6,101 @@
 <title>Findings · Market Signals</title>
 <meta name="description" content="What has held up so far, what&#x27;s still being checked, and what didn&#x27;t work.">
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232c5a8c'/%3E%3Cpath d='M7 22l6-7 5 4 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300c805'/%3E%3Cpath d='M6 22l6-7 5 4 9-10' stroke='black' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 </head>
 <body>
 <header class="site">
   <div class="site-inner">
-    <a class="brand" href="index.html">Market Signals</a>
-    <span class="asof">Results to 20 Nov 2026</span>
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 23l7-8 5 4 10-11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Market Signals</a>
+    <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html">How it works</a><a href="findings.html" aria-current="page">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
   </div>
-  <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html">How it works</a><a href="findings.html" aria-current="page">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
-  <script>(function(){var a=document.querySelector('.tabs a[aria-current]'),n=document.querySelector('.tabs');if(a&&n&&a.offsetLeft+a.offsetWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-16;})();</script>
 </header>
+<div class="wrap">
 <main>
 
-<section class="hero small-hero">
+<section class="quote">
   <h1>Findings</h1>
-  <p class="lede">A finding is a result worth writing up, good or bad. Of 30 so far, 2 are confirmed, 7 are still being checked and 21 were ruled out.</p>
+  <div class="q-value">2 confirmed</div>
+  <div class="q-change flat">of 30 findings · 7 being checked · 21 ruled out</div>
 </section>
 <section>
   <h2>Confirmed</h2>
   <article class="finding">
-    <h3><span class="id">F01</span>A stock's recent path predicts how much it will move next week</h3>
+    <div class="f-head"><span class="w-id">F01</span><h3>A stock's recent path predicts how much it will move next week</h3><span class="pill up">Confirmed</span></div>
     <p>How long it has been since a stock's 60-day high and low, how far it sits below the high, and how much of its recent move came on a handful of big days together forecast how much it will move over the next one to two weeks. Its own past volatility doesn't capture this. It predicts the size of the move, not the direction.</p>
     <p>It held on 2021 data it was never tuned on, and it isn't explained by earnings dates or by simply being down from the high. It also shows up in Europe, more weakly.</p>
     <p class="small">Possible use: sizing positions or pricing options. Nothing has been built to trade it yet.</p>
   </article>
   <article class="finding">
-    <h3><span class="id">F03</span>Recent extreme days point the same way, but it's the same signal</h3>
+    <div class="f-head"><span class="w-id">F03</span><h3>Recent extreme days point the same way, but it's the same signal</h3><span class="pill up">Confirmed</span></div>
     <p>The number and timing of a stock's recent extreme days also forecast next week's volatility, and that held on 2021 data. Once F01 is accounted for, though, it adds nothing new, so it's treated as part of F01.</p>
   </article>
 </section>
 <section>
   <h2>Still being checked</h2>
-  <ul class="plain">
-    <li><span class="id">F02</span> European and Asian stocks follow the US move by one session, mostly right at their open. Probably too small to trade after costs.</li>
-    <li><span class="id">F08</span> Thinly traded stocks, like small banks and municipal-bond funds, react to the market's move a day late.</li>
-    <li><span class="id">F17</span> The recent trend in US Treasuries says something about a few municipal-bond funds and small banks.</li>
-  </ul>
+  <div class="list"><a class="wrow" href="#"><span class="w-main"><span class="w-id">F02</span><span class="w-title">Europe and Asia follow the US move a session later</span><span class=w-note>Probably too small to trade after costs.</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F08</span><span class="w-title">Thinly traded stocks react to the market a day late</span><span class=w-note>Small banks and municipal-bond funds.</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F17</span><span class="w-title">The Treasury trend says something about a few bond funds</span><span class=w-note>Also some small banks.</span></span><span class="pill flat">Checking</span></a></div>
   <p class="small">The other 4 are narrower checks of the method itself.</p>
 </section>
 <section>
   <h2>What didn't work</h2>
   <p>Ruling ideas out is most of the work. Each of these was tested properly and found to be luck, so it won't be tested again in the same form.</p>
-  <ul class="plain">
-    <li><span class='id'>F04</span> The &quot;arrow of time&quot; in a company&#x27;s history did not hold up</li><li><span class='id'>F05</span> A company&#x27;s own history says nothing about its direction</li><li><span class='id'>F06</span> Palladium&#x27;s lead on US companies reversed on fresh dates</li><li><span class='id'>F07</span> Oil and gas do not lead stocks beyond chance</li><li><span class='id'>F09</span> Single S&amp;P 500 stocks lead no other US companies</li><li><span class='id'>F10</span> Nothing abroad, and no index or fund, leads US companies beyond their market</li><li><span class='id'>F11</span> Rates, credit and currencies lead no stocks within 20 sessions</li><li><span class='id'>F12</span> Commodities don&#x27;t lead the companies that use them</li><li><span class='id'>F13</span> Crypto leads no stocks</li><li><span class='id'>F14</span> SEC filing counts carry no market-wide signal</li><li><span class='id'>F15</span> Market-wide news counts carry no signal</li><li><span class='id'>F25</span> A steeper yield curve is said to help banks, but it matters how the curve steepens.</li>
-  </ul>
+  <div class="list"><a class="wrow" href="#"><span class="w-main"><span class="w-id">F04</span><span class="w-title">The &quot;arrow of time&quot; in a company&#x27;s history did not hold up</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F05</span><span class="w-title">A company&#x27;s own history says nothing about its direction</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F06</span><span class="w-title">Palladium&#x27;s lead on US companies reversed on fresh dates</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F07</span><span class="w-title">Oil and gas do not lead stocks beyond chance</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F09</span><span class="w-title">Single S&amp;P 500 stocks lead no other US companies</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F10</span><span class="w-title">Nothing abroad, and no index or fund, leads US companies beyond their market</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F11</span><span class="w-title">Rates, credit and currencies lead no stocks within 20 sessions</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F12</span><span class="w-title">Commodities don&#x27;t lead the companies that use them</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F13</span><span class="w-title">Crypto leads no stocks</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F14</span><span class="w-title">SEC filing counts carry no market-wide signal</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F15</span><span class="w-title">Market-wide news counts carry no signal</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F25</span><span class="w-title">A steeper yield curve is said to help banks, but it matters how the curve steepens.</span></span><span class="pill down">No effect</span></a></div>
   <p class="small">Plus 9 more narrow ones, and 4 lessons about the method itself.</p>
 </section>
 <p class="next-link"><a href="ideas.html">Next: Ideas <span aria-hidden="true">→</span></a></p>
 </main>
+<aside class="side"><div class="card"><div class="card-head"><h2>Real ideas passing</h2><span>by stage</span></div><div class="card-list"><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">First screen</span><span class="w-title">Luck passes 3.2%</span></span><span class="pill flat">2.7%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Second look</span><span class="w-title">Luck passes 2.1%</span></span><span class="pill up">4.3%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Battery check</span><span class="w-title">Luck passes 1.9%</span></span><span class="pill up">20.8%</span></a></div><p class="card-foot">Results to Nov 20, 2026. Snapshot, not live.</p></div></aside>
+</div>
 <footer class="site-foot"><div class="site-inner">
-  <span>Updated 24 Nov 2026 from the project's research tables. A snapshot, not live.</span>
+  <span>Updated Nov 25, 2026 from the project's research tables. A snapshot, not live.</span>
   <span>Not investment advice. Nothing here is traded.</span>
 </div></footer>
+<script>(function(){
+var NF=new Intl.NumberFormat('en-US');
+function fmt(v,k){return k==='pct'?Math.round(v*100)+'%':NF.format(Math.round(v));}
+function chg(d,k){var s=d>0?'+':(d<0?'−':'');d=Math.abs(d);return s+(k==='pct'?Math.round(d*100)+' pts':NF.format(Math.round(d)));}
+function lab(t,g){var o=g==='hour'?{month:'short',day:'numeric',hour:'numeric',timeZone:'America/New_York'}:{month:'short',day:'numeric',timeZone:'UTC'};return new Date(t*1000).toLocaleString('en-US',o)+(g==='hour'?' ET':'');}
+var a=document.querySelector('.tabs a[aria-current]'),nv=document.querySelector('.tabs');if(a&&nv&&a.offsetLeft+a.offsetWidth>nv.clientWidth)nv.scrollLeft=a.offsetLeft-16;
+document.querySelectorAll('.chart-block').forEach(function(b){
+  var D=JSON.parse(b.querySelector('script[type="application/json"]').textContent);
+  var box=b.querySelector('.chart'),svg=box.querySelector('svg'),line=svg.querySelector('.line'),base=svg.querySelector('.base');
+  var dot=box.querySelector('.dot'),hair=box.querySelector('.hair'),tip=box.querySelector('.tip');
+  var V=b.querySelector('[data-v]'),C=b.querySelector('[data-c]'),P=b.querySelector('[data-p]');
+  var W=1000,H=200,PAD=10,S=null;
+  function draw(days,label){
+    var n=D.t.length,t1=D.t[n-1],t0=days?t1-days*86400:-Infinity,I=[];
+    for(var i=0;i<n;i++)if(D.t[i]>=t0)I.push(i);
+    var mn=Infinity,mx=-Infinity;I.forEach(function(i){mn=Math.min(mn,D.v[i]);mx=Math.max(mx,D.v[i]);});
+    var a=D.t[I[0]],z=D.t[I[I.length-1]];
+    var xs=I.map(function(i){return (D.t[i]-a)/((z-a)||1)*W;});
+    var ys=I.map(function(i){return mx===mn?H/2:PAD+(1-(D.v[i]-mn)/(mx-mn))*(H-2*PAD);});
+    line.setAttribute('d','M'+xs.map(function(x,j){return x.toFixed(1)+','+ys[j].toFixed(1);}).join(' L'));
+    base.setAttribute('y1',ys[0].toFixed(1));base.setAttribute('y2',ys[0].toFixed(1));
+    S={I:I,xs:xs,ys:ys,label:label};
+    var d=D.v[I[I.length-1]]-D.v[I[0]];
+    b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);
+    show(I.length-1,label);
+  }
+  function show(j,label){
+    var i=S.I[j];V.textContent=fmt(D.v[i],D.k);C.textContent=chg(D.v[i]-D.v[S.I[0]],D.k);P.textContent=label;
+  }
+  function move(ev){
+    if(!S)return;var r=box.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width*W,lo=0,hi=S.xs.length-1;
+    while(hi-lo>1){var m=(lo+hi)>>1;if(S.xs[m]<x)lo=m;else hi=m;}
+    var j=Math.abs(S.xs[lo]-x)<Math.abs(S.xs[hi]-x)?lo:hi,px=S.xs[j]/W*100,py=S.ys[j]/H*100;
+    dot.hidden=hair.hidden=tip.hidden=false;
+    dot.style.left=hair.style.left=tip.style.left=px+'%';dot.style.top=py+'%';
+    tip.textContent=lab(D.t[S.I[j]],D.g);tip.classList.toggle('right',px>80);tip.classList.toggle('left',px<20);
+    var d=D.v[S.I[j]]-D.v[S.I[0]];b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);
+    show(j,lab(D.t[S.I[j]],D.g));
+  }
+  function leave(){dot.hidden=hair.hidden=tip.hidden=true;var d=D.v[S.I[S.I.length-1]]-D.v[S.I[0]];b.classList.toggle('up',d>=0);b.classList.toggle('down',d<0);show(S.I.length-1,S.label);}
+  box.addEventListener('pointermove',move);box.addEventListener('pointerdown',move);
+  box.addEventListener('pointerleave',leave);box.addEventListener('pointercancel',leave);box.addEventListener('pointerup',function(ev){if(ev.pointerType!=='mouse')leave();});
+  var btns=b.querySelectorAll('[data-range]');
+  btns.forEach(function(x){x.addEventListener('click',function(){btns.forEach(function(y){y.setAttribute('aria-pressed',y===x?'true':'false');});draw(+x.dataset.range,x.dataset.label);});});
+  var on=b.querySelector('[data-range][aria-pressed="true"]');draw(on?+on.dataset.range:0,on?on.dataset.label:P.textContent);
+});
+})();</script>
 </body>
 </html>
