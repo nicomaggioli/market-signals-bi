@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Findings · Market Signals</title>
+<meta name="description" content="What has held up so far, what&#x27;s still being checked, and what didn&#x27;t work.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232c5a8c'/%3E%3Cpath d='M7 22l6-7 5 4 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <a class="brand" href="index.html">Market Signals</a>
+    <span class="asof">Results to 20 Nov 2026</span>
+  </div>
+  <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html">How it works</a><a href="findings.html" aria-current="page">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
+  <script>(function(){var a=document.querySelector('.tabs a[aria-current]'),n=document.querySelector('.tabs');if(a&&n&&a.offsetLeft+a.offsetWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-16;})();</script>
+</header>
+<main>
+
+<section class="hero small-hero">
+  <h1>Findings</h1>
+  <p class="lede">A finding is a result worth writing up, good or bad. Of 30 so far, 2 are confirmed, 7 are still being checked and 21 were ruled out.</p>
+</section>
+<section>
+  <h2>Confirmed</h2>
+  <article class="finding">
+    <h3><span class="id">F01</span>A stock's recent path predicts how much it will move next week</h3>
+    <p>How long it has been since a stock's 60-day high and low, how far it sits below the high, and how much of its recent move came on a handful of big days together forecast how much it will move over the next one to two weeks. Its own past volatility doesn't capture this. It predicts the size of the move, not the direction.</p>
+    <p>It held on 2021 data it was never tuned on, and it isn't explained by earnings dates or by simply being down from the high. It also shows up in Europe, more weakly.</p>
+    <p class="small">Possible use: sizing positions or pricing options. Nothing has been built to trade it yet.</p>
+  </article>
+  <article class="finding">
+    <h3><span class="id">F03</span>Recent extreme days point the same way, but it's the same signal</h3>
+    <p>The number and timing of a stock's recent extreme days also forecast next week's volatility, and that held on 2021 data. Once F01 is accounted for, though, it adds nothing new, so it's treated as part of F01.</p>
+  </article>
+</section>
+<section>
+  <h2>Still being checked</h2>
+  <ul class="plain">
+    <li><span class="id">F02</span> European and Asian stocks follow the US move by one session, mostly right at their open. Probably too small to trade after costs.</li>
+    <li><span class="id">F08</span> Thinly traded stocks, like small banks and municipal-bond funds, react to the market's move a day late.</li>
+    <li><span class="id">F17</span> The recent trend in US Treasuries says something about a few municipal-bond funds and small banks.</li>
+  </ul>
+  <p class="small">The other 4 are narrower checks of the method itself.</p>
+</section>
+<section>
+  <h2>What didn't work</h2>
+  <p>Ruling ideas out is most of the work. Each of these was tested properly and found to be luck, so it won't be tested again in the same form.</p>
+  <ul class="plain">
+    <li><span class='id'>F04</span> The &quot;arrow of time&quot; in a company&#x27;s history did not hold up</li><li><span class='id'>F05</span> A company&#x27;s own history says nothing about its direction</li><li><span class='id'>F06</span> Palladium&#x27;s lead on US companies reversed on fresh dates</li><li><span class='id'>F07</span> Oil and gas do not lead stocks beyond chance</li><li><span class='id'>F09</span> Single S&amp;P 500 stocks lead no other US companies</li><li><span class='id'>F10</span> Nothing abroad, and no index or fund, leads US companies beyond their market</li><li><span class='id'>F11</span> Rates, credit and currencies lead no stocks within 20 sessions</li><li><span class='id'>F12</span> Commodities don&#x27;t lead the companies that use them</li><li><span class='id'>F13</span> Crypto leads no stocks</li><li><span class='id'>F14</span> SEC filing counts carry no market-wide signal</li><li><span class='id'>F15</span> Market-wide news counts carry no signal</li><li><span class='id'>F25</span> A steeper yield curve is said to help banks, but it matters how the curve steepens.</li>
+  </ul>
+  <p class="small">Plus 9 more narrow ones, and 4 lessons about the method itself.</p>
+</section>
+<p class="next-link"><a href="ideas.html">Next: Ideas <span aria-hidden="true">→</span></a></p>
+</main>
+<footer class="site-foot"><div class="site-inner">
+  <span>Updated 24 Nov 2026 from the project's research tables. A snapshot, not live.</span>
+  <span>Not investment advice. Nothing here is traded.</span>
+</div></footer>
+</body>
+</html>

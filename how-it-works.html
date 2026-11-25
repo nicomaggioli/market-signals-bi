@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it works · Market Signals</title>
+<meta name="description" content="How an idea is tested, and how the project measures luck.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232c5a8c'/%3E%3Cpath d='M7 22l6-7 5 4 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="site">
+  <div class="site-inner">
+    <a class="brand" href="index.html">Market Signals</a>
+    <span class="asof">Results to 20 Nov 2026</span>
+  </div>
+  <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html" aria-current="page">How it works</a><a href="findings.html">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
+  <script>(function(){var a=document.querySelector('.tabs a[aria-current]'),n=document.querySelector('.tabs');if(a&&n&&a.offsetLeft+a.offsetWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-16;})();</script>
+</header>
+<main>
+
+<section class="hero small-hero">
+  <h1>How it works</h1>
+  <p class="lede">An idea is something like "when oil jumps, airline stocks fall the next day". The system turns it into a test, runs it on years of data, and keeps only the ideas that survive several checks in a row.</p>
+</section>
+<section>
+  <h2>The steps</h2>
+  <ol class="steps">
+    <li><b>Write the idea.</b> From people on the team, from AI that reads the news, or from older idea lists.</li>
+    <li><b>First screen.</b> A fast test across thousands of companies. Cheap, so most ideas get one.</li>
+    <li><b>Second look.</b> The same test on companies the first screen never saw.</li>
+    <li><b>Battery check.</b> Harder tests: does it survive earnings dates, simple explanations and shuffled controls?</li>
+    <li><b>Confirm on new data.</b> Run once on years the idea was never tuned on (2021). Only then is it a confirmed finding.</li>
+    <li><b>Follow it live.</b> Log a prediction each time the event happens, and score it later.</li>
+  </ol>
+</section>
+<section>
+  <h2>How many make it</h2>
+  <p>Each step keeps fewer ideas.</p>
+  <div class="bars">
+<div class="bar"><span class="bar-label">Ideas written</span><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">3,883</span></div>
+<div class="bar"><span class="bar-label">Got a test result</span><span class="bar-track"><span class="bar-fill" style="width:17.20%"></span></span><span class="bar-value">668</span></div>
+<div class="bar"><span class="bar-label">Passed at least one test</span><span class="bar-track"><span class="bar-fill" style="width:8.45%"></span></span><span class="bar-value">328</span></div>
+<div class="bar"><span class="bar-label">Became a finding</span><span class="bar-track"><span class="bar-fill" style="width:0.77%"></span></span><span class="bar-value">30</span></div>
+<div class="bar"><span class="bar-label">Confirmed</span><span class="bar-track"><span class="bar-fill" style="width:0.40%"></span></span><span class="bar-value">2</span></div>
+</div>
+</section>
+<section>
+  <h2>Real, or luck?</h2>
+  <p>Alongside every real test, the system runs luck-only tests on fake or shuffled data. Those can only pass by chance, so they show how often noise gets through. So far it has run <b>26,164</b> of them.</p>
+  <div class="legend"><span><i></i>Real ideas</span><span class="luck"><i></i>Luck only</span></div>
+  <div class="pairs"><div class="pair"><span class="pair-label">First screen</span><div class="pair-bars">
+  <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:12.91%"></span></span><span class="bar-value">2.7%</span><span class="bar-note">real ideas, 16,331 tests</span></div>
+  <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:15.39%"></span></span><span class="bar-value">3.2%</span><span class="bar-note">luck only, 11,446 tests</span></div>
+</div></div><div class="pair"><span class="pair-label">Second look</span><div class="pair-bars">
+  <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:20.65%"></span></span><span class="bar-value">4.3%</span><span class="bar-note">real ideas, 1,515 tests</span></div>
+  <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:10.24%"></span></span><span class="bar-value">2.1%</span><span class="bar-note">luck only, 4,933 tests</span></div>
+</div></div><div class="pair"><span class="pair-label">Battery check</span><div class="pair-bars">
+  <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">20.8%</span><span class="bar-note">real ideas, 4,076 tests</span></div>
+  <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:9.30%"></span></span><span class="bar-value">1.9%</span><span class="bar-note">luck only, 3,000 tests</span></div>
+</div></div></div>
+  <p>At the first screen, real ideas pass <b>2.7%</b> of the time and luck-only tests <b>3.2%</b>: no real difference. The battery check only sees ideas that already passed a screen, and there real ideas pass <b>20.8%</b> against <b>1.9%</b> for luck. That's where real signals start to show.</p>
+</section>
+<p class="next-link"><a href="findings.html">Next: Findings <span aria-hidden="true">→</span></a></p>
+</main>
+<footer class="site-foot"><div class="site-inner">
+  <span>Updated 24 Nov 2026 from the project's research tables. A snapshot, not live.</span>
+  <span>Not investment advice. Nothing here is traded.</span>
+</div></footer>
+</body>
+</html>
