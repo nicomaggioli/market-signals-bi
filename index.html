@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market Signals</title>
+<meta name="description" content="Where a research project testing thousands of trading ideas stands: what was tested, what held up, and how much of it was luck.">
+<style>
+  :root {
+    --bg: #fbfaf7; --ink: #1d1c1a; --muted: #6a675f; --rule: #e3e0d8; --track: #efece5;
+    --accent: #2c5a8c; --luck: #b4afa4;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #191816; --ink: #eceae5; --muted: #a29f97; --rule: #34322e; --track: #2a2926; --accent: #86afe0; --luck: #6d6960; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #191816; --ink: #eceae5; --muted: #a29f97; --rule: #34322e; --track: #2a2926; --accent: #86afe0; --luck: #6d6960; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+  main { max-width: 700px; margin: 0 auto; padding: 56px 16px 80px; }
+  h1, h2 { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-weight: 400; letter-spacing: -0.01em; text-wrap: balance; }
+  h1 { font-size: 2.6rem; line-height: 1.1; margin: 0 0 16px; }
+  h2 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 12px; }
+  p { margin: 0 0 14px; text-wrap: pretty; }
+  .lede { font-size: 1.15rem; color: var(--ink); }
+  .dateline { color: var(--muted); font-size: 0.85rem; margin-bottom: 40px; }
+  section { border-top: 1px solid var(--rule); padding-top: 32px; margin-top: 40px; }
+  .small { color: var(--muted); font-size: 0.85rem; }
+  b, .num { font-variant-numeric: tabular-nums; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 28px 0 8px; }
+  .stat { border-left: 2px solid var(--rule); padding-left: 12px; }
+  .stat strong { display: block; font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 400; font-size: 2.1rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .stat span { color: var(--muted); font-size: 0.85rem; line-height: 1.35; display: block; margin-top: 4px; }
+  .stat.key { border-left-color: var(--accent); }
+
+  .bars { display: grid; gap: 10px; margin: 20px 0; }
+  .bar { display: grid; grid-template-columns: minmax(120px, 34%) 1fr 4.5em; align-items: center; gap: 10px; font-size: 0.92rem; }
+  .bar-label { text-align: right; color: var(--ink); line-height: 1.25; }
+  .bar-track { height: 14px; background: var(--track); border-radius: 2px; overflow: hidden; }
+  .bar-fill { display: block; height: 100%; background: var(--accent); }
+  .bar-value { font-variant-numeric: tabular-nums; }
+  .bar-note { grid-column: 2 / 4; color: var(--muted); font-size: 0.8rem; margin-top: -6px; }
+
+  .pairs { display: grid; gap: 18px; margin: 24px 0; }
+  .pair { display: grid; grid-template-columns: minmax(110px, 26%) 1fr; gap: 12px; align-items: start; }
+  .pair-label { text-align: right; padding-top: 1px; font-size: 0.92rem; }
+  .pair-bars { display: grid; gap: 6px; }
+  .pair .bar { grid-template-columns: 1fr 4em minmax(9em, auto); gap: 10px; }
+  .pair .bar-note { grid-column: auto; margin: 0; }
+  .bar.luck .bar-fill { background: var(--luck); }
+
+  .cols { display: flex; align-items: flex-end; gap: 6px; height: 190px; margin: 24px 0 8px; }
+  .col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; min-width: 0; }
+  .col-track { flex: 1; width: 100%; max-width: 34px; background: var(--track); border-radius: 2px; display: flex; align-items: flex-end; overflow: hidden; }
+  .col-fill { display: block; width: 100%; background: var(--accent); }
+  .col-value { font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-bottom: 4px; }
+  .col-label { font-size: 0.72rem; color: var(--muted); margin-top: 6px; white-space: nowrap; }
+
+  .finding { margin: 22px 0; padding-left: 16px; border-left: 2px solid var(--accent); }
+  .finding h3 { font-size: 1.02rem; margin: 0 0 6px; line-height: 1.35; }
+  .finding .id { color: var(--muted); font-weight: 400; margin-right: 6px; font-variant-numeric: tabular-nums; }
+  ul.plain { padding-left: 1.1em; margin: 8px 0 14px; }
+  ul.plain li { margin-bottom: 6px; }
+  ul.plain .id { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 4px; }
+  footer { margin-top: 56px; border-top: 1px solid var(--rule); padding-top: 20px; color: var(--muted); font-size: 0.82rem; }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    main { padding-top: 36px; }
+    h1 { font-size: 2.1rem; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .bar { grid-template-columns: 1fr 4em; }
+    .bar-label { grid-column: 1 / 3; text-align: left; margin-bottom: -6px; }
+    .bar-note { grid-column: 1 / 3; }
+    .pair { grid-template-columns: 1fr; gap: 6px; }
+    .pair-label { text-align: left; font-weight: 600; }
+    .pair .bar { grid-template-columns: 1fr 3.6em; }
+    .pair .bar-note { grid-column: 1 / 3; margin-top: -4px; }
+    .col-value { font-size: 0.62rem; }
+    .col-label { font-size: 0.62rem; writing-mode: vertical-rl; transform: rotate(180deg); }
+    .cols { gap: 3px; height: 220px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Market Signals</h1>
+  <p class="lede">A small team is running a research project that tests thousands of trading ideas on years of stock market data. Every test is also run on shuffled data, to measure how often a meaningless idea would pass by luck.</p>
+  <p class="dateline">Test results from 10 Oct to 20 Nov 2026. Updated 24 Nov 2026.</p>
+
+  <section>
+    <h2>The short version</h2>
+    <p>Of <b>3,883</b> ideas, <b>668</b> have been tested so far and <b>2</b> have held up all the way. Neither is being traded yet. At the first screen, real ideas pass about as often as luck alone would let them, so a single pass means very little. That's why ideas have to clear several stages before they count.</p>
+    <div class="stats">
+      <div class="stat"><strong>3,883</strong><span>ideas written</span></div>
+      <div class="stat"><strong>668</strong><span>tested so far</span></div>
+      <div class="stat"><strong>30</strong><span>became findings</span></div>
+      <div class="stat key"><strong>2</strong><span>confirmed on new data</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>From idea to finding</h2>
+    <p>Each step keeps fewer ideas. A finding is a result worth writing up. It's only confirmed once it holds on years of data it was never tuned on.</p>
+    <div class="bars ">
+<div class="bar"><span class="bar-label">Ideas written</span><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">3,883</span></div>
+<div class="bar"><span class="bar-label">Got a test result</span><span class="bar-track"><span class="bar-fill" style="width:17.20%"></span></span><span class="bar-value">668</span></div>
+<div class="bar"><span class="bar-label">Passed at least one test</span><span class="bar-track"><span class="bar-fill" style="width:8.45%"></span></span><span class="bar-value">328</span></div>
+<div class="bar"><span class="bar-label">Became a finding</span><span class="bar-track"><span class="bar-fill" style="width:0.77%"></span></span><span class="bar-value">30</span></div>
+<div class="bar"><span class="bar-label">Confirmed</span><span class="bar-track"><span class="bar-fill" style="width:0.40%"></span></span><span class="bar-value">2</span></div>
+</div>
+  </section>
+
+  <section>
+    <h2>Real, or luck?</h2>
+    <p>Each stage also runs luck-only tests on fake or shuffled data, which can only pass by chance. If real ideas pass at the same rate, those passes are mostly noise.</p>
+    <div class="pairs"><div class="pair">
+  <span class="pair-label">First screen</span>
+  <div class="pair-bars">
+    <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:12.91%"></span></span><span class="bar-value">2.7%</span><span class="bar-note">real, 16,331 tests</span></div>
+    <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:15.39%"></span></span><span class="bar-value">3.2%</span><span class="bar-note">luck only, 11,446 tests</span></div>
+  </div>
+</div><div class="pair">
+  <span class="pair-label">Second look</span>
+  <div class="pair-bars">
+    <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:20.65%"></span></span><span class="bar-value">4.3%</span><span class="bar-note">real, 1,515 tests</span></div>
+    <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:10.24%"></span></span><span class="bar-value">2.1%</span><span class="bar-note">luck only, 4,933 tests</span></div>
+  </div>
+</div><div class="pair">
+  <span class="pair-label">Battery check</span>
+  <div class="pair-bars">
+    <div class="bar"><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">20.8%</span><span class="bar-note">real, 4,076 tests</span></div>
+    <div class="bar luck"><span class="bar-track"><span class="bar-fill" style="width:9.30%"></span></span><span class="bar-value">1.9%</span><span class="bar-note">luck only, 3,000 tests</span></div>
+  </div>
+</div></div>
+    <p>At the first screen, real ideas pass <b>2.7%</b> of the time and luck-only tests <b>3.2%</b>: no difference. The battery check only sees ideas that already passed a screen, and there real ideas pass <b>20.8%</b> against <b>1.9%</b> for luck. That's where real signals start to stand out.</p>
+  </section>
+
+  <section>
+    <h2>What has held up</h2>
+    <div class="finding">
+      <h3><span class="id">F01</span>A stock's recent path predicts how much it will move next week</h3>
+      <p>How long it has been since a stock's 60-day high and low, how far it sits below the high, and how much of its recent move came on a handful of big days together forecast how much it will move over the next one to two weeks. Its own past volatility doesn't capture this. It predicts the size of the move, not the direction. It held on 2021 data it was never tuned on, and it isn't explained by earnings dates or by simply being down from the high. It also shows up in Europe, more weakly.</p>
+      <p class="small">Possible use: sizing positions or pricing options. Nothing has been built to trade it yet.</p>
+    </div>
+    <div class="finding">
+      <h3><span class="id">F03</span>Recent extreme days point the same way, but it's the same signal</h3>
+      <p>The number and timing of a stock's recent extreme days also forecast next week's volatility, and that held on 2021 data. Once F01 is accounted for, though, it adds nothing new, so it's treated as part of F01.</p>
+    </div>
+    <p>There are also <b>7</b> open leads still being checked. The clearest ones:</p>
+    <ul class="plain">
+      <li><span class="id">F02</span> European and Asian stocks follow the US move by one session, mostly right at their open. Probably too small to trade after costs.</li>
+      <li><span class="id">F08</span> Thinly traded stocks, like small banks and municipal-bond funds, react to the market's move a day late.</li>
+      <li><span class="id">F17</span> The recent trend in US Treasuries says something about a few municipal-bond funds and small banks.</li>
+    </ul>
+    <p class="small">The other 4 are narrower checks of the method itself.</p>
+  </section>
+
+  <section>
+    <h2>Where the ideas come from</h2>
+    <p>Almost all ideas come from older imported lists or from AI that reads the news. Team members have typed in <b>9</b>, and none has been tested yet.</p>
+    <div class="bars ">
+<div class="bar"><span class="bar-label">Older idea lists, imported</span><span class="bar-track"><span class="bar-fill" style="width:100.00%"></span></span><span class="bar-value">3,058</span><span class="bar-note">2,800 tested</span></div>
+<div class="bar"><span class="bar-label">AI idea scout</span><span class="bar-track"><span class="bar-fill" style="width:22.56%"></span></span><span class="bar-value">690</span><span class="bar-note">13 tested</span></div>
+<div class="bar"><span class="bar-label">AI leads from news and cases</span><span class="bar-track"><span class="bar-fill" style="width:3.66%"></span></span><span class="bar-value">112</span><span class="bar-note">16 tested</span></div>
+<div class="bar"><span class="bar-label">Follow-ups of findings</span><span class="bar-track"><span class="bar-fill" style="width:0.46%"></span></span><span class="bar-value">14</span><span class="bar-note">9 tested</span></div>
+<div class="bar"><span class="bar-label">People on the team</span><span class="bar-track"><span class="bar-fill" style="width:0.40%"></span></span><span class="bar-value">9</span></div>
+</div>
+  </section>
+
+  <section>
+    <h2>The machine</h2>
+    <p>The tests run overnight on one home PC, on its graphics card. So far it has finished <b>20,242</b> jobs and recorded <b>48,106</b> test results. This is how busy the graphics card was each night.</p>
+    <div class="cols" role="img" aria-label="GPU busy share per night: 13 Nov 63%, 14 Nov 93%, 15 Nov 86%, 16 Nov 62%, 17 Nov 89%, 18 Nov 85%, 19 Nov 92%, 20 Nov 43%, 21 Nov 42%, 22 Nov 39%, 23 Nov 39%, 24 Nov 40%"><div class="col"><span class="col-value">63%</span><span class="col-track"><span class="col-fill" style="height:63.3%"></span></span><span class="col-label">13 Nov</span></div><div class="col"><span class="col-value">93%</span><span class="col-track"><span class="col-fill" style="height:93.0%"></span></span><span class="col-label">14 Nov</span></div><div class="col"><span class="col-value">86%</span><span class="col-track"><span class="col-fill" style="height:85.5%"></span></span><span class="col-label">15 Nov</span></div><div class="col"><span class="col-value">62%</span><span class="col-track"><span class="col-fill" style="height:62.3%"></span></span><span class="col-label">16 Nov</span></div><div class="col"><span class="col-value">89%</span><span class="col-track"><span class="col-fill" style="height:88.6%"></span></span><span class="col-label">17 Nov</span></div><div class="col"><span class="col-value">85%</span><span class="col-track"><span class="col-fill" style="height:84.5%"></span></span><span class="col-label">18 Nov</span></div><div class="col"><span class="col-value">92%</span><span class="col-track"><span class="col-fill" style="height:91.6%"></span></span><span class="col-label">19 Nov</span></div><div class="col"><span class="col-value">43%</span><span class="col-track"><span class="col-fill" style="height:43.0%"></span></span><span class="col-label">20 Nov</span></div><div class="col"><span class="col-value">42%</span><span class="col-track"><span class="col-fill" style="height:41.7%"></span></span><span class="col-label">21 Nov</span></div><div class="col"><span class="col-value">39%</span><span class="col-track"><span class="col-fill" style="height:39.0%"></span></span><span class="col-label">22 Nov</span></div><div class="col"><span class="col-value">39%</span><span class="col-track"><span class="col-fill" style="height:38.8%"></span></span><span class="col-label">23 Nov</span></div><div class="col"><span class="col-value">40%</span><span class="col-track"><span class="col-fill" style="height:39.9%"></span></span><span class="col-label">24 Nov</span></div></div>
+    <p class="small">Average share of the night the graphics card was busy. Only one machine reports so far.</p>
+  </section>
+
+  <section>
+    <h2>Not done yet</h2>
+    <ul class="plain">
+      <li>No finding is traded, and there's no code to trade one.</li>
+      <li>Whether the confirmed finding still makes money after trading costs hasn't been checked yet.</li>
+      <li>Only one computer does the work. The team's other computers aren't connected yet.</li>
+      <li>Requests typed in by people don't jump the queue yet.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Built 24 Nov 2026 from the project's controller tables, read-only. A snapshot, not live. Nothing here is investment advice.
+  </footer>
+</main>
+</body>
+</html>
