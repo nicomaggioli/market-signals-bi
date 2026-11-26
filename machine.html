@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The machine · Market Signals</title>
-<meta name="description" content="How the research runs overnight, and how busy the computer is.">
+<meta name="description" content="GPU use, jobs and night windows.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300c805'/%3E%3Cpath d='M6 22l6-7 5 4 9-10' stroke='black' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 </head>
@@ -12,34 +12,32 @@
 <header class="site">
   <div class="site-inner">
     <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 23l7-8 5 4 10-11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Market Signals</a>
-    <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html">How it works</a><a href="findings.html">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html" aria-current="page">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
+    <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="findings.html">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html" aria-current="page">Machine</a></div></nav>
   </div>
 </header>
 <div class="wrap">
 <main>
 
+<div class="alert" role="alert"><strong>No test results since Nov 20, 07:30 UTC.</strong>
+  4 night windows ran after it (4,738 pieces reported), 0 jobs finished, and the graphics card averaged 39% busy against 82% before.</div>
 <section class="chart-block down big" id="c-gpu">
   <h1>Graphics card busy</h1>
   <div class="q-value" data-v>40%</div>
   <div class="q-change"><span data-c>−23 pts</span> <span class="q-period" data-p>Since Nov 13</span></div>
-  <p class="q-sub">Average share of each night the graphics card was busy. It averaged 81% up to Nov 19 and about 40% since.</p>
+  <p class="q-sub">Average busy share per night window.</p>
   <div class="chart" role="img" aria-label="Graphics card busy, line chart, from 63% to 40%">
     <svg viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" x2="1000" y1="108.8" y2="108.8"/><path class="line" d="M0.0,108.8 L90.9,10.0 L181.8,34.9 L272.7,111.9 L363.6,24.8 L454.5,38.1 L545.5,14.7 L636.4,176.3 L727.3,180.3 L818.2,189.5 L909.1,190.0 L1000.0,186.4"/></svg>
     <span class="hair" hidden></span><span class="tip" hidden></span><span class="dot" hidden></span>
   </div>
   <div class="ranges" role="group" aria-label="Time range"><button type="button" data-range="7" data-label="Past week" aria-pressed="false">1W</button><button type="button" data-range="0" data-label="Since Nov 13" aria-pressed="true">ALL</button></div>
-  <script type="application/json">{"t":[1794528000,1794614400,1794700800,1794787200,1794873600,1794960000,1795046400,1795132800,1795219200,1795305600,1795392000,1795478400],"v":[0.6325000000000001,0.9299999999999998,0.855125,0.6231612903225807,0.8855937500000001,0.8454999999999999,0.91571875,0.42959375,0.41738709677419356,0.38981249999999995,0.38825,0.3990967741935484],"k":"pct","g":"day"}</script>
+  <script type="application/json">{"t":[1794528000,1794614400,1794700800,1794787200,1794873600,1794960000,1795046400,1795132800,1795219200,1795305600,1795392000,1795478400],"v":[0.6325000000000001,0.9299999999999998,0.8551249999999999,0.6231612903225807,0.8855937500000001,0.8454999999999997,0.9157187499999999,0.42959375000000005,0.4173870967741935,0.3898124999999999,0.38825000000000004,0.3990967741935484],"k":"pct","g":"day"}</script>
 </section>
-<dl class="stats"><div><dt>Jobs finished</dt><dd>20,242</dd></div><div><dt>Test results</dt><dd>48,106</dd></div><div><dt>Computers</dt><dd>1</dd></div><div><dt>Decides what&#x27;s next</dt><dd>Every 10 min</dd></div></dl>
-<section>
-  <h2>About</h2>
-  <p>The tests run overnight on one home PC, mostly on its graphics card, which can run thousands of small tests at once. Every 10 minutes the system decides what to run next.</p>
-</section>
+<dl class="stats"><div><dt>Jobs finished</dt><dd>20,242</dd></div><div><dt>Test results</dt><dd>48,106</dd></div><div><dt>Machines</dt><dd>1</dd></div><div><dt>Stuck over 24 h</dt><dd>26</dd></div></dl>
 <section class="chart-block up" id="c-jobs">
   <h2 class="chart-title">Jobs finished per day</h2>
   <div class="q-value" data-v>489</div>
   <div class="q-change"><span data-c>+460</span> <span class="q-period" data-p>Since Nov 13</span></div>
-  <p class="q-sub">New York days with at least 20 jobs.</p>
+  
   <div class="chart" role="img" aria-label="Jobs finished per day, line chart, from 29 to 489">
     <svg viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"><line class="base" x1="0" x2="1000" y1="190.0" y2="190.0"/><path class="line" d="M0.0,190.0 L142.9,143.1 L285.7,113.4 L428.6,119.2 L571.4,23.1 L714.3,45.6 L857.1,10.0 L1000.0,173.8"/></svg>
     <span class="hair" hidden></span><span class="tip" hidden></span><span class="dot" hidden></span>
@@ -47,13 +45,16 @@
   <div class="ranges"></div>
   <script type="application/json">{"t":[1794528000,1794614400,1794700800,1794787200,1794873600,1794960000,1795046400,1795132800],"v":[29,1362,2205,2041,4769,4131,5141,489],"k":"int","g":"day"}</script>
 </section>
-<p class="next-link"><a href="next.html">Next: What&#x27;s next <span aria-hidden="true">→</span></a></p>
+<section id="windows">
+  <h2>Night windows</h2>
+  <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Night</th><th class=num>Start UTC</th><th class=num>Hours</th><th class=num>Pieces</th><th>Ended</th></tr></thead><tbody><tr><td>Nov 24</td><td class=num>05:00</td><td class=num>8.0</td><td class=num>1,164</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 23</td><td class=num>05:00</td><td class=num>8.0</td><td class=num>1,216</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 22</td><td class=num>05:00</td><td class=num>8.0</td><td class=num>1,179</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 21</td><td class=num>05:00</td><td class=num>8.0</td><td class=num>1,179</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 20</td><td class=num>05:00</td><td class=num>8.0</td><td class=num>1,598</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 19</td><td class=num>05:00</td><td class=num>8.0</td><td class=num>5,441</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 18</td><td class=num>05:00</td><td class=num>8.0</td><td class=num>4,612</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 17</td><td class=num>05:00</td><td class=num>8.0</td><td class=num>5,166</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 16</td><td class=num>05:00</td><td class=num>8.1</td><td class=num>2,088</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 15</td><td class=num>05:00</td><td class=num>8.0</td><td class=num>2,214</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 14</td><td class=num>05:00</td><td class=num>6.0</td><td class=num>1,363</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 13</td><td class=num>17:45</td><td class=num>1.1</td><td class=num>255</td><td><span class="pill up sm">normal</span></td></tr><tr><td>Nov 13</td><td class=num>05:00</td><td class=num>7.5</td><td class=num>1,147</td><td><span class="pill up sm">normal</span></td></tr></tbody></table></div>
+</section>
 </main>
-<aside class="side"><div class="card"><div class="card-head"><h2>Findings</h2><span>30 total</span></div><div class="card-list"><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F01</span><span class="w-title">Recent path predicts next week&#x27;s move size</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F03</span><span class="w-title">Recent extreme days, same signal as F01</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F02</span><span class="w-title">Europe and Asia follow the US move a session later</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F08</span><span class="w-title">Thinly traded stocks react to the market a day late</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F17</span><span class="w-title">The Treasury trend says something about a few bond funds</span></span><span class="pill flat">Checking</span></a></div><div class="card-head"><h2>Real ideas passing</h2><span>by stage</span></div><div class="card-list"><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">First screen</span><span class="w-title">Luck passes 3.2%</span></span><span class="pill flat">2.7%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Second look</span><span class="w-title">Luck passes 2.1%</span></span><span class="pill up">4.3%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Battery check</span><span class="w-title">Luck passes 1.9%</span></span><span class="pill up">20.8%</span></a></div><p class="card-foot">Results to Nov 20, 2026. Snapshot, not live.</p></div></aside>
+<aside class="side"><div class="card"><div class="card-head"><h2>Findings</h2><span>30 total</span></div><div class="card-list"><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F01</span><span class="w-title">Recent path predicts next week&#x27;s move size</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F03</span><span class="w-title">Recent extreme days, same signal as F01</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F02</span><span class="w-title">Europe and Asia follow the US move a session later</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F08</span><span class="w-title">Thinly traded stocks react to the market a day late</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="findings.html"><span class="w-main"><span class="w-id">F17</span><span class="w-title">The Treasury trend says something about a few bond funds</span></span><span class="pill flat">Checking</span></a></div><div class="card-head"><h2>Real ideas passing</h2><span>by stage</span></div><div class="card-list"><a class="wrow" href="index.html#stages"><span class="w-main"><span class="w-id">First screen</span><span class="w-title">Luck passes 3.2%</span></span><span class="pill flat">2.7%</span></a><a class="wrow" href="index.html#stages"><span class="w-main"><span class="w-id">Second look</span><span class="w-title">Luck passes 2.1%</span></span><span class="pill up">4.3%</span></a><a class="wrow" href="index.html#stages"><span class="w-main"><span class="w-id">Battery check</span><span class="w-title">Luck passes 1.9%</span></span><span class="pill up">20.8%</span></a></div><p class="card-foot">Results to Nov 20, 2026. Snapshot, not live.</p></div></aside>
 </div>
 <footer class="site-foot"><div class="site-inner">
-  <span>Updated Nov 25, 2026 from the project's research tables. A snapshot, not live.</span>
-  <span>Not investment advice. Nothing here is traded.</span>
+  <span>Snapshot of the controller tables, built Nov 25, 2026.</span>
+  <span>Not investment advice.</span>
 </div></footer>
 <script>(function(){
 var NF=new Intl.NumberFormat('en-US');

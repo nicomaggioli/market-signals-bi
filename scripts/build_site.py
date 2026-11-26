@@ -80,6 +80,20 @@ jobs_day = rows(f"select {NYDATE.format('finished_at')} d, count(*) from jobs wh
 first_night, last_night = nights[0][0], nights[-1][0]
 early_gpu = sum(g for d, g in nights if d <= dt.date(2026, 11, 19)) / max(1, sum(1 for d, g in nights if d <= dt.date(2026, 11, 19)))
 
+# ---- internal status -----------------------------------------------------------------------------------------------
+n_sent = one("select count(*) from ideas where status not in ('new','question','duplicate')")
+n_rules = one(f"select count(distinct log) from {R('predictions')}")
+ref = one("select max(recorded_at) from jobs")
+n_stuck = one(f"select count(*) from jobs where state='running' and started_at < timestamp '{ref}' - interval 24 hour")
+W = L("windows", "window_id")
+windows_tbl = rows(f"select night, started_at, epoch(ended_at - started_at) / 3600, pieces_done, end_kind from {W} where ended_at is not null order by started_at desc")
+last_end = one(f"select max(ended_at) from {W}")
+gap_hours = (last_end - newest).total_seconds() / 3600
+windows_since, pieces_since = con.sql(f"select count(*), coalesce(sum(pieces_done), 0) from {W} where started_at > timestamp '{newest}'").fetchone()
+jobs_since = one(f"select count(*) from jobs where finished_at > timestamp '{newest}'")
+gpu_before, gpu_since = con.sql(f"""select avg(gpu_busy_share) filter (where "at" <= timestamp '{newest}'), avg(gpu_busy_share) filter (where "at" > timestamp '{newest}')
+  from {L('window_beats', 'beat_id')} where gpu_busy_share is not null""").fetchone()
+
 # ---- series for the line charts ------------------------------------------------------------------------------------
 import calendar
 import json
@@ -190,7 +204,7 @@ def sidebar(file):
     find_rows = (wrow("F01", "Recent path predicts next week's move size", "up")
                  + wrow("F03", "Recent extreme days, same signal as F01", "up")
                  + "".join(wrow(i, t, "flat") for i, t, _ in LEADS))
-    luck_rows = "".join(f'<a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">{e(lbl)}</span>'
+    luck_rows = "".join(f'<a class="wrow" href="index.html#stages"><span class="w-main"><span class="w-id">{e(lbl)}</span>'
                         f'<span class="w-title">Luck passes {p(l)}</span></span><span class="pill {"up" if r > l * 1.25 else "flat"}">{p(r)}</span></a>'
                         for lbl, r, l, _, _ in noise)
     parts = []
@@ -200,8 +214,7 @@ def sidebar(file):
     return f'<aside class="side"><div class="card">{"".join(parts)}<p class="card-foot">Results to {day(newest)}, {newest:%Y}. Snapshot, not live.</p></div></aside>'
 
 
-TABS = [("index.html", "Overview"), ("how-it-works.html", "How it works"), ("findings.html", "Findings"),
-        ("ideas.html", "Ideas"), ("machine.html", "The machine"), ("next.html", "What's next")]
+TABS = [("index.html", "Overview"), ("findings.html", "Findings"), ("ideas.html", "Ideas"), ("machine.html", "Machine")]
 
 JS = r'''(function(){
 var NF=new Intl.NumberFormat('en-US');
@@ -277,13 +290,12 @@ def layout(file, title, desc, body):
 <div class="wrap">
 <main>
 {body}
-{f'<p class="next-link"><a href="{nxt[0]}">Next: {e(nxt[1])} <span aria-hidden="true">→</span></a></p>' if nxt else ''}
 </main>
 {sidebar(file)}
 </div>
 <footer class="site-foot"><div class="site-inner">
-  <span>Updated {built:%b %-d, %Y} from the project's research tables. A snapshot, not live.</span>
-  <span>Not investment advice. Nothing here is traded.</span>
+  <span>Snapshot of the controller tables, built {built:%b %-d, %Y}.</span>
+  <span>Not investment advice.</span>
 </div></footer>
 <script>{JS}</script>
 </body>
@@ -294,136 +306,77 @@ def layout(file, title, desc, body):
 # ---- pages -----------------------------------------------------------------------------------------------------------
 pages = {}
 
-pages["index.html"] = ("Overview", "Where a research project testing thousands of trading ideas stands: what was tested, what held up, and how much was luck.", f'''
+
+def table(head, body_rows, num_cols=()):
+    th = "".join(f'<th{" class=num" if i in num_cols else ""}>{e(h)}</th>' for i, h in enumerate(head))
+    trs = "".join("<tr>" + "".join(f'<td{" class=num" if i in num_cols else ""}>{c}</td>' for i, c in enumerate(r)) + "</tr>" for r in body_rows)
+    return f'<div class="tbl-wrap"><table class="tbl"><thead><tr>{th}</tr></thead><tbody>{trs}</tbody></table></div>'
+
+
+ALERT = (f'''<div class="alert" role="alert"><strong>No test results since {day(newest)}, {newest:%H:%M} UTC.</strong>
+  {windows_since} night windows ran after it ({n(pieces_since)} pieces reported), {n(jobs_since)} jobs finished, and the graphics card averaged {p(gpu_since, 0)} busy against {p(gpu_before, 0)} before.</div>'''
+         if gap_hours > 24 else "")
+
+stage_rows = [(e(lbl), n(rj), p(r), n(lj), p(l), f'<span class="pill {"up" if r > l * 1.25 else "flat"} sm">{"Above luck" if r > l * 1.25 else "At luck"}</span>')
+              for lbl, r, l, rj, lj in noise]
+
+pages["index.html"] = ("Overview", "Market Signals: test results, findings and machine status.", f'''
+{ALERT}
 {chart("c-results", "Test results recorded", cum_t, cum_v, "int", "hour", "All time")}
-{stats([("Ideas written", n(n_ideas)), ("Ideas tested", n(n_tested)), ("Findings", n(n_findings)), ("Confirmed", n(n_confirmed)),
-        ("Luck tests", n(n_luck_tests)), ("Jobs run", n(n_jobs)), ("Past week", "+" + n(week_ago) + " results"), ("Last result", f"{day(newest)}, {newest:%H:%M} UTC")])}
-<section>
-  <h2>About</h2>
-  <p>A small team is testing ideas about the stock market on years of price data. Every test is also run on shuffled data, so we know how often a meaningless idea would pass by chance. Only ideas that clear several checks in a row, and then hold up on years they were never tuned on, count as confirmed.</p>
+{stats([("Ideas", n(n_ideas)), ("Tested", n(n_tested)), ("Findings", n(n_findings)), ("Confirmed", n(n_confirmed)),
+        ("Luck tests", n(n_luck_tests)), ("Jobs", n(n_jobs)), ("Past week", "+" + n(week_ago)), ("Last result", f"{day(newest)}, {newest:%H:%M} UTC")])}
+<section id="stages">
+  <h2>Pass rate by stage</h2>
+  {table(["Stage", "Real tests", "Real pass", "Luck tests", "Luck pass", ""], stage_rows, num_cols=(1, 2, 3, 4))}
 </section>
-<section>
-  <h2>Where things stand</h2>
-  <div class="news">
-    <a class="item" href="how-it-works.html"><span class="kicker">How it works</span><span class="headline">Most first-round passes are luck</span><span class="text">At the first screen, real ideas pass {p(screen[1])} of the time and luck-only tests {p(screen[2])}. Only ideas that clear several stages count.</span></a>
-    <a class="item" href="findings.html"><span class="kicker">Findings</span><span class="headline">One signal has held up on new data</span><span class="text">A stock's recent path predicts how much it will move next week. Not which way, just how much. It isn't traded yet.</span></a>
-    <a class="item" href="ideas.html"><span class="kicker">Ideas</span><span class="headline">Ideas mostly come from AI and older lists</span><span class="text">{n(n_ideas)} ideas so far. {n(dict(statuses).get("new", 0))} are still waiting to be looked at.</span></a>
-    <a class="item" href="machine.html"><span class="kicker">The machine</span><span class="headline">It runs overnight on one PC</span><span class="text">{n(n_jobs)} jobs and {n(n_results)} test results since {day(first)}, on a home PC's graphics card.</span></a>
-    <a class="item" href="next.html"><span class="kicker">What's next</span><span class="headline">Trading costs and more computers</span><span class="text">Checking whether the signal survives costs, connecting more machines, and putting people's requests first.</span></a>
-  </div>
+<section id="pipeline">
+  <h2>Pipeline</h2>
+  {bars([("Ideas", n_ideas, ""), ("Sent to a test", n_sent, ""), ("Have a result", n_tested, ""), ("Passed once", n_passed, ""), ("Findings", n_findings, ""), ("Confirmed", n_confirmed, ""), ("Followed live", n_rules, "")], n)}
 </section>''')
 
-pages["how-it-works.html"] = ("How it works", "How an idea is tested, and how the project measures luck.", f'''
-<section class="quote">
-  <h1>How it works</h1>
-  <div class="q-value">{p(screen[1])} <span class="vs">vs</span> {p(screen[2])}</div>
-  <div class="q-change flat">Real ideas vs luck at the first screen</div>
-</section>
-<section>
-  <h2>About</h2>
-  <p>An idea is something like "when oil jumps, airline stocks fall the next day". The system turns it into a test, runs it on years of data, and keeps only the ideas that survive several checks in a row.</p>
-</section>
-<section>
-  <h2>The steps</h2>
-  <ol class="steps">
-    <li><b>Write the idea.</b> From people on the team, from AI that reads the news, or from older idea lists.</li>
-    <li><b>First screen.</b> A fast test across thousands of companies. Cheap, so most ideas get one.</li>
-    <li><b>Second look.</b> The same test on companies the first screen never saw.</li>
-    <li><b>Battery check.</b> Harder tests: does it survive earnings dates, simple explanations and shuffled controls?</li>
-    <li><b>Confirm on new data.</b> Run once on years the idea was never tuned on (2021). Only then is it a confirmed finding.</li>
-    <li><b>Follow it live.</b> Log a prediction each time the event happens, and score it later.</li>
-  </ol>
-</section>
-<section>
-  <h2>How many make it</h2>
-  {bars([("Ideas written", n_ideas, ""), ("Got a test result", n_tested, ""), ("Passed a test", n_passed, ""), ("Became a finding", n_findings, ""), ("Confirmed", n_confirmed, "")], n)}
-</section>
-<section>
-  <h2>Real, or luck?</h2>
-  <p>Alongside every real test, the system runs luck-only tests on fake or shuffled data. Those can only pass by chance, so they show how often noise gets through. So far it has run <b>{n(n_luck_tests)}</b> of them.</p>
-  <div class="legend"><span><i></i>Real ideas</span><span class="luck"><i></i>Luck only</span></div>
-  {noise_chart()}
-  <p>At the first screen, real ideas pass <b>{p(screen[1])}</b> of the time and luck-only tests <b>{p(screen[2])}</b>: no real difference.{f" The battery check only sees ideas that already passed a screen, and there real ideas pass <b>{p(battery[1])}</b> against <b>{p(battery[2])}</b> for luck. That's where real signals start to show." if battery else ""}</p>
-</section>''')
-
-pages["findings.html"] = ("Findings", "What has held up so far, what's still being checked, and what didn't work.", f'''
+pages["findings.html"] = ("Findings", "Confirmed findings, open leads and ruled-out ideas.", f'''
 <section class="quote">
   <h1>Findings</h1>
   <div class="q-value">{n_confirmed} confirmed</div>
-  <div class="q-change flat">of {n_findings} findings · {n_leads} being checked · {n_noeffect} ruled out</div>
+  <div class="q-change flat">{n_findings} total · {n_leads} open · {n_noeffect} ruled out · {n_lessons} method lessons</div>
 </section>
 <section>
   <h2>Confirmed</h2>
-  <article class="finding">
-    <div class="f-head"><span class="w-id">F01</span><h3>A stock's recent path predicts how much it will move next week</h3><span class="pill up">Confirmed</span></div>
-    <p>How long it has been since a stock's 60-day high and low, how far it sits below the high, and how much of its recent move came on a handful of big days together forecast how much it will move over the next one to two weeks. Its own past volatility doesn't capture this. It predicts the size of the move, not the direction.</p>
-    <p>It held on 2021 data it was never tuned on, and it isn't explained by earnings dates or by simply being down from the high. It also shows up in Europe, more weakly.</p>
-    <p class="small">Possible use: sizing positions or pricing options. Nothing has been built to trade it yet.</p>
-  </article>
-  <article class="finding">
-    <div class="f-head"><span class="w-id">F03</span><h3>Recent extreme days point the same way, but it's the same signal</h3><span class="pill up">Confirmed</span></div>
-    <p>The number and timing of a stock's recent extreme days also forecast next week's volatility, and that held on 2021 data. Once F01 is accounted for, though, it adds nothing new, so it's treated as part of F01.</p>
-  </article>
+  <div class="list">{wrow("F01", "Recent path (time since 60-day high/low, depth below high, big-day share) predicts next 5–10 day volatility", "up", "#", "Held on 2021. Size of move, not direction. US, weaker in Europe. Not traded.")}{wrow("F03", "Recent extreme days predict next-week volatility", "up", "#", "Held on 2021. Adds nothing beyond F01.")}</div>
 </section>
 <section>
-  <h2>Still being checked</h2>
+  <h2>Open leads</h2>
   <div class="list">{"".join(wrow(i, t, "flat", "#", note) for i, t, note in LEADS)}</div>
-  <p class="small">The other {n_leads - 3} are narrower checks of the method itself.</p>
+  <p class="small">+{n_leads - 3} method checks.</p>
 </section>
 <section>
-  <h2>What didn't work</h2>
-  <p>Ruling ideas out is most of the work. Each of these was tested properly and found to be luck, so it won't be tested again in the same form.</p>
+  <h2>Ruled out</h2>
   <div class="list">{"".join(wrow(i, t, "down", "#") for i, t in didnt)}</div>
-  <p class="small">Plus {n_noeffect - len(didnt)} more narrow ones, and {n_lessons} lessons about the method itself.</p>
+  <p class="small">+{n_noeffect - len(didnt)} narrower.</p>
 </section>''')
 
-pages["ideas.html"] = ("Ideas", "Where the ideas come from and what happens to them.", f'''
+pages["ideas.html"] = ("Ideas", "Ideas by source and status.", f'''
 {chart("c-ideas", "Ideas written", idea_t, idea_v, "int", "day", "All time")}
-{stats([(s, n(c)) for s, c, _ in st_items[:4]])}
+{stats([(s, n(c)) for s, c, _ in st_items[:3]] + [("From people", f"{people} · {people_tested} tested")])}
 <section>
-  <h2>Where they come from</h2>
+  <h2>By source</h2>
   {bars([(g, c, f"{n(t)} tested" if t else "") for g, c, t in sources], n)}
-  <p>People on the team have typed in <b>{people}</b> ideas, and {"none has" if people_tested == 0 else f"{people_tested} have"} been tested yet. Making their requests go first is on the <a href="next.html">list of what's next</a>.</p>
 </section>
 <section>
-  <h2>Where they are now</h2>
+  <h2>By status</h2>
   {bars(st_items, n)}
-  <p>"Needs data" means the idea needs a kind of data the project doesn't collect yet.</p>
 </section>''')
 
-pages["machine.html"] = ("The machine", "How the research runs overnight, and how busy the computer is.", f'''
+win_rows = [(day(w[0]), f"{w[1]:%H:%M}", f"{w[2]:.1f}", n(w[3]), f'<span class="pill {"up" if w[4] == "normal" else "down"} sm">{e(w[4])}</span>') for w in windows_tbl]
+pages["machine.html"] = ("The machine", "GPU use, jobs and night windows.", f'''
+{ALERT}
 {chart("c-gpu", "Graphics card busy", [ep(d) for d, _ in nights], [g for _, g in nights], "pct", "day", f"Since {day(first_night)}",
-       sub=f"Average share of each night the graphics card was busy. It averaged {p(early_gpu, 0)} up to Nov 19 and about 40% since.")}
-{stats([("Jobs finished", n(n_jobs)), ("Test results", n(n_results)), ("Computers", str(n_machines)), ("Decides what's next", "Every 10 min")])}
-<section>
-  <h2>About</h2>
-  <p>The tests run overnight on one home PC, mostly on its graphics card, which can run thousands of small tests at once. Every 10 minutes the system decides what to run next.</p>
-</section>
-{chart("c-jobs", "Jobs finished per day", [ep(d) for d, _ in jobs_day], [c for _, c in jobs_day], "int", "day", f"Since {day(jobs_day[0][0])}", big=False, sub="New York days with at least 20 jobs.")}''')
-
-pages["next.html"] = ("What's next", "What isn't done yet and what comes next.", '''
-<section class="quote">
-  <h1>What's next</h1>
-  <div class="q-value">4 in progress</div>
-  <div class="q-change flat">The research side works. Next is making a confirmed signal usable.</div>
-</section>
-<section>
-  <h2>Not done yet</h2>
-  <ul class="plain">
-    <li>No finding is traded, and there's no code to trade one.</li>
-    <li>Whether the confirmed finding still makes money after trading costs hasn't been checked yet.</li>
-    <li>Only one computer does the work. The team's other computers aren't connected yet.</li>
-    <li>Requests typed in by people don't jump the queue yet.</li>
-  </ul>
-</section>
-<section>
-  <h2>Being built</h2>
-  <ol class="steps">
-    <li><b>People first.</b> A request from someone on the team ("test this tonight") goes to the front of the queue. If no test fits it, the system writes a short report saying why.</li>
-    <li><b>Backtesting.</b> A step that trades confirmed findings on past data, costs included.</li>
-    <li><b>Re-checking every day.</b> Past findings get re-run on new data each day, so one that stops working is caught.</li>
-    <li><b>More machines.</b> The team's other computers join, each reporting how busy it is.</li>
-  </ol>
+       sub="Average busy share per night window.")}
+{stats([("Jobs finished", n(n_jobs)), ("Test results", n(n_results)), ("Machines", str(n_machines)), ("Stuck over 24 h", n(n_stuck))])}
+{chart("c-jobs", "Jobs finished per day", [ep(d) for d, _ in jobs_day], [c for _, c in jobs_day], "int", "day", f"Since {day(jobs_day[0][0])}", big=False)}
+<section id="windows">
+  <h2>Night windows</h2>
+  {table(["Night", "Start UTC", "Hours", "Pieces", "Ended"], win_rows, num_cols=(1, 2, 3))}
 </section>''')
 
 LIGHT = "--bg:#ffffff; --ink:#000000; --muted:#6b7177; --rule:#e3e6e9; --hover:#f5f7f8; --track:#eceff1; --green:#00c805; --green-ink:#007a02; --red:#ff5000; --red-ink:#c43b00; --luck:#b9bfc4; color-scheme:light;"
@@ -553,6 +506,14 @@ a.wrow[href]:not([href="#"]):hover {{ background: var(--hover); }}
 .card-list .pill {{ min-width: 78px; height: 30px; font-size: 0.78rem; }}
 .card-foot {{ margin: 0; padding: 14px 24px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.78rem; }}
 
+.alert {{ border-left: 3px solid var(--red); background: var(--hover); padding: 14px 16px; border-radius: 0 6px 6px 0; margin: 0 0 32px; font-size: 0.92rem; line-height: 1.5; }}
+.alert strong {{ color: var(--red-ink); display: block; }}
+.tbl-wrap {{ overflow-x: auto; margin-top: 4px; }}
+.tbl {{ width: 100%; border-collapse: collapse; font-size: 0.9rem; font-variant-numeric: tabular-nums; }}
+.tbl th {{ text-align: left; font-size: 0.78rem; font-weight: 700; padding: 12px 10px 10px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }}
+.tbl td {{ padding: 11px 10px 11px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }}
+.tbl .num {{ text-align: right; }}
+.pill.sm {{ min-width: 0; height: 24px; font-size: 0.74rem; padding: 0 8px; border-radius: 5px; }}
 .next-link {{ margin-top: 56px; }}
 .next-link a {{ display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 24px; border-radius: 999px; background: var(--green); color: #000; text-decoration: none; font-weight: 700; font-size: 0.9rem; }}
 .next-link a:hover {{ filter: brightness(1.08); }}

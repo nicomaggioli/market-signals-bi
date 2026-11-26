@@ -122,6 +122,14 @@ a.wrow[href]:not([href="#"]):hover { background: var(--hover); }
 .card-list .pill { min-width: 78px; height: 30px; font-size: 0.78rem; }
 .card-foot { margin: 0; padding: 14px 24px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.78rem; }
 
+.alert { border-left: 3px solid var(--red); background: var(--hover); padding: 14px 16px; border-radius: 0 6px 6px 0; margin: 0 0 32px; font-size: 0.92rem; line-height: 1.5; }
+.alert strong { color: var(--red-ink); display: block; }
+.tbl-wrap { overflow-x: auto; margin-top: 4px; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.tbl th { text-align: left; font-size: 0.78rem; font-weight: 700; padding: 12px 10px 10px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.tbl td { padding: 11px 10px 11px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.tbl .num { text-align: right; }
+.pill.sm { min-width: 0; height: 24px; font-size: 0.74rem; padding: 0 8px; border-radius: 5px; }
 .next-link { margin-top: 56px; }
 .next-link a { display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 24px; border-radius: 999px; background: var(--green); color: #000; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
 .next-link a:hover { filter: brightness(1.08); }

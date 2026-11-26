@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Findings · Market Signals</title>
-<meta name="description" content="What has held up so far, what&#x27;s still being checked, and what didn&#x27;t work.">
+<meta name="description" content="Confirmed findings, open leads and ruled-out ideas.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300c805'/%3E%3Cpath d='M6 22l6-7 5 4 9-10' stroke='black' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 </head>
@@ -12,7 +12,7 @@
 <header class="site">
   <div class="site-inner">
     <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 23l7-8 5 4 10-11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Market Signals</a>
-    <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="how-it-works.html">How it works</a><a href="findings.html" aria-current="page">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html">The machine</a><a href="next.html">What&#x27;s next</a></div></nav>
+    <nav class="tabs" aria-label="Sections"><div class="tabs-inner"><a href="index.html">Overview</a><a href="findings.html" aria-current="page">Findings</a><a href="ideas.html">Ideas</a><a href="machine.html">Machine</a></div></nav>
   </div>
 </header>
 <div class="wrap">
@@ -21,39 +21,28 @@
 <section class="quote">
   <h1>Findings</h1>
   <div class="q-value">2 confirmed</div>
-  <div class="q-change flat">of 30 findings · 7 being checked · 21 ruled out</div>
+  <div class="q-change flat">30 total · 7 open · 21 ruled out · 4 method lessons</div>
 </section>
 <section>
   <h2>Confirmed</h2>
-  <article class="finding">
-    <div class="f-head"><span class="w-id">F01</span><h3>A stock's recent path predicts how much it will move next week</h3><span class="pill up">Confirmed</span></div>
-    <p>How long it has been since a stock's 60-day high and low, how far it sits below the high, and how much of its recent move came on a handful of big days together forecast how much it will move over the next one to two weeks. Its own past volatility doesn't capture this. It predicts the size of the move, not the direction.</p>
-    <p>It held on 2021 data it was never tuned on, and it isn't explained by earnings dates or by simply being down from the high. It also shows up in Europe, more weakly.</p>
-    <p class="small">Possible use: sizing positions or pricing options. Nothing has been built to trade it yet.</p>
-  </article>
-  <article class="finding">
-    <div class="f-head"><span class="w-id">F03</span><h3>Recent extreme days point the same way, but it's the same signal</h3><span class="pill up">Confirmed</span></div>
-    <p>The number and timing of a stock's recent extreme days also forecast next week's volatility, and that held on 2021 data. Once F01 is accounted for, though, it adds nothing new, so it's treated as part of F01.</p>
-  </article>
+  <div class="list"><a class="wrow" href="#"><span class="w-main"><span class="w-id">F01</span><span class="w-title">Recent path (time since 60-day high/low, depth below high, big-day share) predicts next 5–10 day volatility</span><span class=w-note>Held on 2021. Size of move, not direction. US, weaker in Europe. Not traded.</span></span><span class="pill up">Confirmed</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F03</span><span class="w-title">Recent extreme days predict next-week volatility</span><span class=w-note>Held on 2021. Adds nothing beyond F01.</span></span><span class="pill up">Confirmed</span></a></div>
 </section>
 <section>
-  <h2>Still being checked</h2>
+  <h2>Open leads</h2>
   <div class="list"><a class="wrow" href="#"><span class="w-main"><span class="w-id">F02</span><span class="w-title">Europe and Asia follow the US move a session later</span><span class=w-note>Probably too small to trade after costs.</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F08</span><span class="w-title">Thinly traded stocks react to the market a day late</span><span class=w-note>Small banks and municipal-bond funds.</span></span><span class="pill flat">Checking</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F17</span><span class="w-title">The Treasury trend says something about a few bond funds</span><span class=w-note>Also some small banks.</span></span><span class="pill flat">Checking</span></a></div>
-  <p class="small">The other 4 are narrower checks of the method itself.</p>
+  <p class="small">+4 method checks.</p>
 </section>
 <section>
-  <h2>What didn't work</h2>
-  <p>Ruling ideas out is most of the work. Each of these was tested properly and found to be luck, so it won't be tested again in the same form.</p>
+  <h2>Ruled out</h2>
   <div class="list"><a class="wrow" href="#"><span class="w-main"><span class="w-id">F04</span><span class="w-title">The &quot;arrow of time&quot; in a company&#x27;s history did not hold up</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F05</span><span class="w-title">A company&#x27;s own history says nothing about its direction</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F06</span><span class="w-title">Palladium&#x27;s lead on US companies reversed on fresh dates</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F07</span><span class="w-title">Oil and gas do not lead stocks beyond chance</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F09</span><span class="w-title">Single S&amp;P 500 stocks lead no other US companies</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F10</span><span class="w-title">Nothing abroad, and no index or fund, leads US companies beyond their market</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F11</span><span class="w-title">Rates, credit and currencies lead no stocks within 20 sessions</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F12</span><span class="w-title">Commodities don&#x27;t lead the companies that use them</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F13</span><span class="w-title">Crypto leads no stocks</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F14</span><span class="w-title">SEC filing counts carry no market-wide signal</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F15</span><span class="w-title">Market-wide news counts carry no signal</span></span><span class="pill down">No effect</span></a><a class="wrow" href="#"><span class="w-main"><span class="w-id">F25</span><span class="w-title">A steeper yield curve is said to help banks, but it matters how the curve steepens.</span></span><span class="pill down">No effect</span></a></div>
-  <p class="small">Plus 9 more narrow ones, and 4 lessons about the method itself.</p>
+  <p class="small">+9 narrower.</p>
 </section>
-<p class="next-link"><a href="ideas.html">Next: Ideas <span aria-hidden="true">→</span></a></p>
 </main>
-<aside class="side"><div class="card"><div class="card-head"><h2>Real ideas passing</h2><span>by stage</span></div><div class="card-list"><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">First screen</span><span class="w-title">Luck passes 3.2%</span></span><span class="pill flat">2.7%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Second look</span><span class="w-title">Luck passes 2.1%</span></span><span class="pill up">4.3%</span></a><a class="wrow" href="how-it-works.html"><span class="w-main"><span class="w-id">Battery check</span><span class="w-title">Luck passes 1.9%</span></span><span class="pill up">20.8%</span></a></div><p class="card-foot">Results to Nov 20, 2026. Snapshot, not live.</p></div></aside>
+<aside class="side"><div class="card"><div class="card-head"><h2>Real ideas passing</h2><span>by stage</span></div><div class="card-list"><a class="wrow" href="index.html#stages"><span class="w-main"><span class="w-id">First screen</span><span class="w-title">Luck passes 3.2%</span></span><span class="pill flat">2.7%</span></a><a class="wrow" href="index.html#stages"><span class="w-main"><span class="w-id">Second look</span><span class="w-title">Luck passes 2.1%</span></span><span class="pill up">4.3%</span></a><a class="wrow" href="index.html#stages"><span class="w-main"><span class="w-id">Battery check</span><span class="w-title">Luck passes 1.9%</span></span><span class="pill up">20.8%</span></a></div><p class="card-foot">Results to Nov 20, 2026. Snapshot, not live.</p></div></aside>
 </div>
 <footer class="site-foot"><div class="site-inner">
-  <span>Updated Nov 25, 2026 from the project's research tables. A snapshot, not live.</span>
-  <span>Not investment advice. Nothing here is traded.</span>
+  <span>Snapshot of the controller tables, built Nov 25, 2026.</span>
+  <span>Not investment advice.</span>
 </div></footer>
 <script>(function(){
 var NF=new Intl.NumberFormat('en-US');
